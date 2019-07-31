@@ -1,0 +1,7 @@
+if [ "$3" == "" ]
+then
+    echo "USAGE: rename {original} {new} {category}"
+else
+    mv ~/scripts/$1 ~/scripts/$2 && mv ~/workflow/scripts/$3/$1 ~/workflow/scripts/$3/$2
+fi
+

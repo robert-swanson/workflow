@@ -1,0 +1,8 @@
+if [ "$2" == "" ]
+then
+CAT="misc"
+else
+CAT=$2
+fi
+
+vim ~/scripts/$1 && chmod +x ~/scripts/$1 && cp ~/scripts/$1 ~/workflow/scripts/$CAT

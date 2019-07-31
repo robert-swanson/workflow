@@ -1,0 +1,1 @@
+scp ~/repo.py brown@$1:~

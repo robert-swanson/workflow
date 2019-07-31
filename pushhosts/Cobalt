@@ -1,0 +1,6 @@
+dotfiles=~/workflow/dotfiles
+
+cp  ~/.bash_profile ~/workflow/dotfiles/.bash_profile
+cp -r ~/.vim $dotfiles/.vim 
+cp ~/.inputrc $dotfiles/.inputrc 
+cp ~/.vimrc $dotfiles/.vimrc 

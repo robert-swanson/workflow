@@ -1,0 +1,3 @@
+HOST=$(hostname | cut -d "." -f 1)
+echo Updating for host: $HOST
+~/workflow/pullhosts/$HOST*

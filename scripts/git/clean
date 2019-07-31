@@ -1,0 +1,1 @@
+cd ~/malware; git clean -df ~/malware/

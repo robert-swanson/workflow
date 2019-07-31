@@ -1,0 +1,7 @@
+changes=$(git status | grep scripts/ | rev | cut -d "/" -f 1 | rev | xargs)
+read -p "Do you want to apply changes to all of these scripts: $changes: " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    git add -A && git commit -m "$(date)" && git push
+fi

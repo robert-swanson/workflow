@@ -1,0 +1,2 @@
+scp ~/.vimrc brown@$1:~/.vimrc
+scp -r ~/.vim brown@$1:~/
