@@ -33,8 +33,8 @@ Stages, commits, and pushes workflow to github
 ### gpull
 Pulls workflow from github, then runs update
 
-### spush <desthost>
+### spush {desthost}
 Sends workflow to `desthost` using scp
 
-### spull <srchost>
+### spull {srchost}
 Fetches workflow from `srchost` using scp 
