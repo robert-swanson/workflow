@@ -1,14 +1,14 @@
 cd ~/workflow
-echo $(git status --porcelain | sed s/^...// | xargs)
+changes=$(git status --porcelain | sed s/^...// | xargs)
+echo $changes
 read -p "Do you want to apply changes to all of these scripts? [y/N] " -n 1 -r
-echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "Adding..." 
-    git add -Ae
+    git add -A
 
     echo "Committing..."
-    git commit -m "$(date)"
+    git commit -m "$changes"
 
     echo "Pushing..."
     git push
