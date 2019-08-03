@@ -41,7 +41,7 @@ Fetches workflow from `srchost` using scp
 
 
 ## Adding a new host
-1. clone the repository into the home folder
+1. clone the repository into the home folder: `cd ~; git clone https://github.com/swanson7889/workflow.git`
 2. cd into `workflow`
 3. run `source update`, to get hostname
 4. add a file to `pullhosts` and to `pushhosts` with the hostname as the filename, including the scripts to handle pulling from workflow to the machine, and updating the workflow respectivly
