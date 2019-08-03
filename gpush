@@ -1,5 +1,6 @@
 cd ~/workflow
 changes=$(git status --porcelain | sed s/^...// | xargs)
+changes=${changes// /, }
 echo $changes
 read -p "Do you want to apply changes to all of these scripts? [y/N] " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
