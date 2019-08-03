@@ -1,0 +1,10 @@
+if [ "$2" == "" ]
+then
+    vim ~/workflow/scripts/*/$1
+    cp ~/workflow/scripts/*/$1 ~/scripts/$1
+
+else
+    vim ~/workflow/scripts/$2/$1
+    cp ~/workflow/scripts/$2/$1 ~/scripts/$1
+fi
+
