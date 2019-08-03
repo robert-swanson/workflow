@@ -37,4 +37,13 @@ Pulls workflow from github, then runs update
 Sends workflow to `desthost` using scp
 
 ### spull {srchost}
-Fetches workflow from `srchost` using scp 
+Fetches workflow from `srchost` using scp
+
+
+## Adding a new host
+1. clone the repository into the home folder
+2. cd into `workflow`
+3. run `source update`, to get hostname
+4. add a file to `pullhosts` and to `pushhosts` with the hostname as the filename, including the scripts to handle pulling from workflow to the machine, and updating the workflow respectivly
+5. run `source gpull`
+6. run `bash` to reset environment variables
