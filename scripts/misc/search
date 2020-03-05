@@ -1,6 +1,11 @@
 clear
 echo -------------------Content--------------------
-grep -n "$1" $(find -type f)
+#grep -n "$1" $(find . -type f)
+MAX=$2
+if [ $MAX=="" ]; then
+    MAX="1"
+fi
+find . -maxdepth $MAX -exec grep "$1" + {} \; 2> /dev/null
 echo
 echo --------------------Name----------------------
-find . -path "*$1*"
+find . -maxdepth $MAX -path "*$1*"
