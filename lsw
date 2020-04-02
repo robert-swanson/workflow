@@ -1,0 +1,1 @@
+cd ~/workflow; find . -maxdepth 1 -executable -type f | sed 's/\.\///g'
