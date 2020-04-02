@@ -1,1 +1,1 @@
-ls ~/workflow/scripts/
+ls ~/workflow/scripts/$1
