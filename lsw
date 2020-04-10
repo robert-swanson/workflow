@@ -1,1 +1,2 @@
-cd ~/workflow; find . -maxdepth 1 -executable -type f | sed 's/\.\///g'
+cd ~/workflow; find . -maxdepth 1 -type f | sed 's/\.\///g' | grep -v "\."
+

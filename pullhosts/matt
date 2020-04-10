@@ -6,6 +6,7 @@ cp $dotfiles/.inputrc ~/.inputrc
 cp $dotfiles/.vimrc ~/.vimrc
 
 
+mkdir ~/scripts
 scripts=~/workflow/scripts
 
 cp $scripts/building/* ~/scripts/
