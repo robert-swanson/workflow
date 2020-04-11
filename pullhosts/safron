@@ -4,8 +4,9 @@ cp ~/workflow/dotfiles/.bash_profile ~/.bash_profile
 cp -r $dotfiles/.vim ~/
 cp $dotfiles/.inputrc ~/.inputrc
 cp $dotfiles/.vimrc ~/.vimrc
+cp $dotfiles/.tmux.conf ~/.tmux.conf
 
-mkdir ~/scripts
+mkdir -p ~/scripts
 
 scripts=~/workflow/scripts
 

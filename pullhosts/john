@@ -4,10 +4,11 @@ cp ~/workflow/dotfiles/.bashrc ~/.bashrc
 cp -r $dotfiles/.vim ~/.vim
 cp $dotfiles/.inputrc ~/.inputrc
 cp $dotfiles/.vimrc ~/.vimrc
+cp $dotfiles/.tmux.conf ~/.tmux.conf
 
 
 scripts=~/workflow/scripts
-mkdir ~/scripts
+mkdir -p ~/scripts
 
 cp $scripts/building/* ~/scripts/
 cp $scripts/git/* ~/scripts/

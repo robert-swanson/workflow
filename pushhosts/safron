@@ -4,3 +4,4 @@ cp  ~/.bash_profile ~/workflow/dotfiles/.bash_profile
 cp -r ~/.vim $dotfiles/
 cp ~/.inputrc $dotfiles/.inputrc 
 cp ~/.vimrc $dotfiles/.vimrc 
+cp ~/.tmux.conf $dotfiles/.tmux.conf 
