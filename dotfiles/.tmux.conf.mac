@@ -23,11 +23,11 @@ setw -g monitor-activity on
 
 # split panes using | and -
 bind | split-window -h
-bind \ split-window -h
+bind \\ split-window -h
 bind - split-window -v
 bind -n M-| split-window -h
 bind -n M-- split-window -v
-bind -n M-\ split-window -h
+bind -n M-\\ split-window -h
 
 bind-key J resize-pane -D 5
 bind-key K resize-pane -U 5
