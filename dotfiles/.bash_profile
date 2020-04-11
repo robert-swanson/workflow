@@ -7,5 +7,9 @@ export PATH=/Users/robertswanson/workflow:$PATH
 #Fix tmux vim problems
 export TERM=screen-256color
 
+#Silence zsh warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+
 #Set prompt
 export PS1="\[\e[31m\]\h\[\e[m\]\[\e[31m\]:\[\e[m\]\[\e[34m\]\W\[\e[m\] "
