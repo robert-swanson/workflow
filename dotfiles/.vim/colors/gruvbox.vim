@@ -6,8 +6,6 @@
 " Last Modified: 12 Aug 2017
 " -----------------------------------------------------------------------------
 
-set background=dark
-
 " Supporting code -------------------------------------------------------------
 " Initialisation: {{{
 
@@ -116,8 +114,6 @@ let s:gb.bright_blue    = ['#83a598', 109]     " 131-165-152
 let s:gb.bright_purple  = ['#d3869b', 175]     " 211-134-155
 let s:gb.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
 let s:gb.bright_orange  = ['#fe8019', 208]     " 254-128-25
-
-let s:gb.neutral_red    = ['#cc241d', 124]     " 204-36-29
 
 let s:gb.neutral_red    = ['#cc241d', 124]     " 204-36-29
 let s:gb.neutral_green  = ['#98971a', 106]     " 152-151-26
@@ -1319,6 +1315,8 @@ hi! link markdownCode GruvboxAqua
 hi! link markdownCodeBlock GruvboxAqua
 hi! link markdownCodeDelimiter GruvboxAqua
 
+hi! link markdownBlockquote GruvboxGray
+hi! link markdownListMarker GruvboxGray
 hi! link markdownOrderedListMarker GruvboxGray
 hi! link markdownRule GruvboxGray
 hi! link markdownHeadingRule GruvboxGray

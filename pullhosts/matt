@@ -1,7 +1,7 @@
 dotfiles=~/workflow/dotfiles
 
 cp ~/workflow/dotfiles/.bashrc ~/.bashrc
-cp -r $dotfiles/.vim ~/.vim
+cp -r $dotfiles/.vim ~/
 cp $dotfiles/.inputrc ~/.inputrc
 cp $dotfiles/.vimrc ~/.vimrc
 cp $dotfiles/.tmux.conf ~/.tmux.conf
