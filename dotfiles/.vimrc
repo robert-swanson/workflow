@@ -39,3 +39,5 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <S-z> :ZoomToggle<CR>
+
+nnoremap ,<space> :nohlsearch<CR>
