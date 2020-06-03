@@ -24,6 +24,9 @@ noremap <C-l> <C-w>l
 map <S-h> :tabp<cr>
 map <S-l> :tabn<cr>
 
+" File buffer movement
+map <S-k> :bn<cr>
+map <S-j> :bp<cr>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
