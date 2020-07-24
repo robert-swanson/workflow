@@ -16,4 +16,4 @@ cp $scripts/misc/* ~/scripts/
 cp $scripts/ssh/* ~/scripts/
 cp $scripts/tmux/* ~/scripts/
 
-cp $scripts/cobalt/* ~/scripts/
+cp $scripts/safron/* ~/scripts/

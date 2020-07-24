@@ -1,0 +1,12 @@
+if [ ! -d "/Volumes/Amaranth/" ]; then
+    echo Amaranth is not mounted
+    exit
+else
+    echo Go Ahead
+fi
+SRC=/Volumes/Amaranth/
+DST='/Users/robertswanson/OneDrive\ -\ Taylor\ University/Amaranth\ Backup'
+COUNT=$(countr $SRC)
+echo "Backing up $COUNT files from $SRC to $DST"
+
+rsync -vrltD --stats --human-readable "$SRC" "$DST" | pv -lep -s $COUNT

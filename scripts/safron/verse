@@ -1,0 +1,23 @@
+#!/bin/bash
+
+PATH=/Users/robertswanson/Desktop/verse_of_the_day/:$PATH
+modified=$(echo -r verses.txt +%m-%d-%Y)
+today=$(date +%m-%d-%Y)
+if [[ ("$modified" == "$today") && ($1 != "-f")]]
+then
+        echo "Verse already set for today"
+else
+        cd $PATH
+        curl -o verse.json https://www.biblegateway.com/votd/get/?format=json&version=NIV&callback=BG.votdWriteCallback
+        sleep 1
+        pwd
+        verse=`python verse.py | php -R 'echo html_entity_decode($argn);'`
+        # verse="empty"
+        echo 2Suyevivsf | tr e-z a-u | pbcopy
+        echo $verse
+        sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "$verse"
+        echo $today >> verses.txt
+        echo $verse >> verses.txt
+        echo ---------------- >> verses.txt
+        echo "$verse" | pbcopy
+fi
