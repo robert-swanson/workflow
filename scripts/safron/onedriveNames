@@ -1,4 +1,4 @@
-for file in $(find "$* --maxdepth 1); do
-    echo "SH>$FILE"
-    python3 /Users/robertswanson/workflow/scripts/safron/onedriveNames.py $FILE
-done
+find . > /tmp/files.txt
+
+python3 /Users/robertswanson/workflow/scripts/safron/onedriveNames.py /tmp/files.txt
+
