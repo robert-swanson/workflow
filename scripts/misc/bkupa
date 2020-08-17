@@ -5,8 +5,8 @@ else
     echo Go Ahead
 fi
 SRC=/Volumes/Amaranth/
-DST='/Users/robertswanson/OneDrive\ -\ Taylor\ University/Amaranth\ Backup'
-COUNT=$(countr $SRC)
-echo "Backing up $COUNT files from $SRC to $DST"
+DST=/Users/robertswanson/OneDrive\ -\ Taylor\ University/New\ Amaranth\ Backup
+EXCLUDE=/Volumes/Amaranth/skip.txt 
 
-rsync -vrltD --stats --human-readable "$SRC" "$DST" | pv -lep -s $COUNT
+echo rsync -a --stats --human-readable --exclude-from="$EXCLUDE" "$SRC" "$DST"
+rsync -a --stats --human-readable --exclude-from="$EXCLUDE" "$SRC" "$DST"
