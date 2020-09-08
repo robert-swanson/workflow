@@ -4,9 +4,13 @@ if [ ! -d "/Volumes/Amaranth/" ]; then
 else
     echo Go Ahead
 fi
+
 SRC=/Volumes/Amaranth/
-DST=/Users/robertswanson/OneDrive\ -\ Taylor\ University/New\ Amaranth\ Backup
+USER=pi
+HOST=pizero
+DST=/home/pi/AmaranthBackup/Current
+BKP=/home/pi/AmaranthBackup/Archive
 EXCLUDE=/Volumes/Amaranth/skip.txt 
 
-echo rsync -a --stats --human-readable --exclude-from="$EXCLUDE" "$SRC" "$DST"
-rsync -a --stats --human-readable --exclude-from="$EXCLUDE" "$SRC" "$DST"
+echo rsync -rabtvz --backup-dir=$BKP/$(date +\%Y-\%m-\%d_\%H-\%M) --delete --exclude-from=$EXCLUDE "$SRC" "$USER@$HOST:$DST"
+rsync -rabtvz --backup-dir=$BKP/$(date +\%Y-\%m-\%d_\%H-\%M) --delete --exclude-from=$EXCLUDE "$SRC" "$USER@$HOST:$DST"
