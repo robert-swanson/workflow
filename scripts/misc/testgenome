@@ -1,0 +1,3 @@
+clear
+echo ------------------------
+ssh rswanson@matt "ssh rswanson@cse21802 \"cd cos436-parallelanddistributed/genome/ && make && ./genome $*\""
