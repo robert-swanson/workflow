@@ -1,0 +1,4 @@
+find . > /tmp/files.txt
+
+python3 /Users/robertswanson/workflow/scripts/safron/onedriveNames.py /tmp/files.txt
+

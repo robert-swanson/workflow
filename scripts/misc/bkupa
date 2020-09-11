@@ -1,0 +1,16 @@
+if [ ! -d "/Volumes/Amaranth/" ]; then
+    echo Amaranth is not mounted
+    exit
+else
+    echo Go Ahead
+fi
+
+SRC=/Volumes/Amaranth/
+USER=pi
+HOST=pizero
+DST=/home/pi/AmaranthBackup/Current
+BKP=/home/pi/AmaranthBackup/Archive
+EXCLUDE=/Volumes/Amaranth/skip.txt 
+
+echo rsync -rabtvz --backup-dir=$BKP/$(date +\%Y-\%m-\%d_\%H-\%M) --delete --exclude-from=$EXCLUDE "$SRC" "$USER@$HOST:$DST"
+rsync -rabtvz --backup-dir=$BKP/$(date +\%Y-\%m-\%d_\%H-\%M) --delete --exclude-from=$EXCLUDE "$SRC" "$USER@$HOST:$DST"

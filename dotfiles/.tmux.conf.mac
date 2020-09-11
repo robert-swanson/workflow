@@ -22,6 +22,9 @@ setw -g mode-keys vi
 # set -g mouse on
 setw -g monitor-activity on
 
+bind-key M set mouse on
+bind-key m set mouse off
+
 # split panes using | and -
 bind | split-window -h
 bind \\ split-window -h
