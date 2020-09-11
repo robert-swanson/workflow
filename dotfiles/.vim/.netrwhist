@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/genome/handout'
 let g:netrw_dirhist_5='/Users/robertswanson'
 let g:netrw_dirhist_4='/Users/robertswanson/dev'
 let g:netrw_dirhist_3='/Users/robertswanson/dev/rswanson-pbologna'

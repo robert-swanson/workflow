@@ -1,0 +1,1 @@
+clear; cd /home/CS/users/rswanson/.linux/cos436-parallelanddistributed/genome && make && ./genome $*
