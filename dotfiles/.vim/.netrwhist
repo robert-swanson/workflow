@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/convolution/lodepng'
+let g:netrw_dirhist_8='/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/convolution'
+let g:netrw_dirhist_7='/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/convolution/lodepng/examples'
+let g:netrw_dirhist_6='/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/genome/handout'
+let g:netrw_dirhist_5='/Users/robertswanson'
+let g:netrw_dirhist_4='/Users/robertswanson/dev'
+let g:netrw_dirhist_3='/Users/robertswanson/dev/rswanson-pbologna'
+let g:netrw_dirhist_2='/Users/robertswanson/dev/rswanson-pbologna/.git'
+let g:netrw_dirhist_1='/Users/robertswanson/workflow/scripts/building'

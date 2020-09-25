@@ -15,4 +15,5 @@ cp $scripts/git/* ~/scripts/
 cp $scripts/misc/* ~/scripts/
 cp $scripts/ssh/* ~/scripts/
 cp $scripts/tmux/* ~/scripts/
+cp $scripts/cse/* ~/scripts/
 
