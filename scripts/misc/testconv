@@ -1,0 +1,5 @@
+cd /home/CS/users/rswanson/.linux/rswanson/cos436-parallel_and_distributed_computing/convolution
+for p in `seq 8` 16
+do
+    ./convolve -i $1 -o output.png -k identity -p $p
+done
