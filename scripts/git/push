@@ -1,1 +1,8 @@
 git push
+
+if [[ $(git remote -v | grep https://repo.cse.taylor.edu/work/rswanson.git) ]]
+then
+    echo "Pushing to github"
+    git push github
+fi
+
