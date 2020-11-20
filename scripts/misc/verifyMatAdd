@@ -1,0 +1,2 @@
+cd /Users/robertswanson/dev/rswanson/cos436-parallel_and_distributed_computing/mat-add/cmake-build-debug
+Rscript ../test.R A.csv B.csv C.csv
