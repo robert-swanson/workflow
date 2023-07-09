@@ -1,3 +1,8 @@
+" Escape Character
+inoremap ;; <Esc>
+noremap ;; :qa<Enter>
+noremap w;; :wqa<Enter>
+
 " Line Nuumbers
  set number relativenumber
 

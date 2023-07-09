@@ -10,3 +10,4 @@ set keymap vi-insert
 Control-l: clear-screen
 $endif
 
+";;": vi-movement-mode
