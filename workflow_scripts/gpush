@@ -1,4 +1,8 @@
-cd ~/workflow
+#!/bin/bash
+
+set -e
+
+cd "$WORKFLOW_PATH"
 changes=$(git status --porcelain | sed s/^...// | xargs)
 changes=${changes// /, }
 echo $changes

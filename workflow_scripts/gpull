@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+cd "$WORKFLOW_PATH"
+git pull

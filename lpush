@@ -1,3 +1,0 @@
-HOST=$(hostname | cut -d "." -f 1)
-echo Pushing locally for host: $HOST
-~/workflow/pushhosts/$HOST*

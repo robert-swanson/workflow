@@ -1,3 +1,0 @@
-HOST=$(hostname | cut -d "." -f 1)
-echo Pulling locally for host: $HOST
-~/workflow/pullhosts/$HOST*

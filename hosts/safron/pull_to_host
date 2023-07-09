@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -e
+set -o xtrace
+
+# Change for new host
+HOST=safron
+WORKFLOW=~/workflow
+
+# Workflow Dirs
+HOST_DIR=$WORKFLOW/hosts/$HOST
+GLOBAL_DOTFILES=$WORKFLOW/dotfiles
+HOST_DOTFILES=$HOST_DIR/host_dotfiles
+WORKFLOW_SCRIPTS=$WORKFLOW/scripts
+LOCAL_SCRIPTS=$WORKFLOW/local_scripts
+
+if ! test -f "$LOCAL_SCRIPTS"; then
+  echo "Pulling to $HOST for the first time"
+fi
+
+function trash_and_pull_files() {
+  GLOBAL_DOTFILES=$*
+  for NEW_DOTFILE in $GLOBAL_DOTFILES
+  do
+    OLD_DOTFILE=~/$(basename "$NEW_DOTFILE")
+
+    if test -f "$OLD_DOTFILE"; then
+      cp -r "$OLD_DOTFILE" $WORKFLOW/trash
+      echo "$OLD_DOTFILE moved to $WORKFLOW/trash and replaced from workflow"
+    fi
+
+    cp -r "$NEW_DOTFILE" "$OLD_DOTFILE"
+  done
+}
+
+# Pull All Categories
+for category in "$WORKFLOW_SCRIPTS"/*
+do
+  cp "$category/*" $LOCAL_SCRIPTS
+done
+
+# Pull All General Dotfiles
+trash_and_pull_files "$GLOBAL_DOTFILES"/*
+
+# Pull All Host-Specific Dotfiles (override any general)
+trash_and_pull_files "$HOST_DOTFILES"/*
+
+
+

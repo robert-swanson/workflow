@@ -1,9 +1,0 @@
-if [ "$2" == "" ]
-then
-    vim ~/scripts/$1
-    cp ~/scripts/$1 ~/workflow/scripts/*/$1
-else
-    vim ~/scripts/$1
-    cp ~/scripts/$1 ~/workflow/scripts/$2/$1
-fi
-

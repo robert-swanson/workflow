@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Change for new host
+HOST=safron
+WORKFLOW=~/workflow
+
+# Workflow Dirs
+HOST_DIR=$WORKFLOW/hosts/$HOST
+GLOBAL_DOTFILES=$WORKFLOW/dotfiles
+HOST_DOTFILES=$HOST_DIR/host_dotfiles
+
+
+function update_files() {
+  OLD_DOTFILES=$*
+  for OLD_DOTFILE in $OLD_DOTFILES
+  do
+    NEW_DOTFILE=~/$(basename "$OLD_DOTFILE")
+    cp -r "$NEW_DOTFILE" "$OLD_DOTFILE"
+    echo "Pushed $NEW_DOTFILE from $HOST"
+  done
+}
+
+# Push General Dotfiles
+for OLD_DOTFILE in "$GLOBAL_DOTFILES"/*
+do
+  POTENTIAL_HOST_DOTFILE="$HOST_DOTFILES/$(basename "$OLD_DOTFILE")"
+  if test -f "$POTENTIAL_HOST_DOTFILE" || test -d "$POTENTIAL_HOST_DOTFILE"
+  then
+    continue  # Don't push to general dotfiles if this is a host-specific dotfile
+  else
+      update_files "$OLD_DOTFILE"
+  fi
+done
+
+
+# Push Host Dotfiles
+update_files "$HOST_DOTFILES"/*
