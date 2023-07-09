@@ -12,7 +12,6 @@ for category_str in pull_ignore_categories.split(","):
     assert category_str in category_names, f"Invalid category: {category_str}"
     VAR_STORE.pull_ignore_categories.append(category_str)
 
-VAR_STORE.write()
 
 host_dir = VAR_STORE.get_host_dir()
 if not host_dir.exists():
@@ -29,5 +28,13 @@ if not host_dir.exists():
 else:
     print(f"Host directory {host_dir} already exists. Skipping copy.")
 
+save = input("Want to save VAR_STORE? ")
+if save.lower() in ["y", "yes"]:
+    print("Saving VAR_STORE...")
+    VAR_STORE.write()
+
 print("Running pull...")
 host_pull_to_local()
+
+print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflow_dir}")
+

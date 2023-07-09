@@ -7,3 +7,10 @@ def get_host_categories(get_all=False) -> list[Category]:
             if category_dir.is_dir() and
             (get_all or category_dir.name not in VAR_STORE.pull_ignore_categories)]
 
+
+def get_category_with_name(name: str) -> Category:
+    category = Category(VAR_STORE.get_scripts_dir() / name)
+    assert category.path.is_dir(), f"Category {name} does not exist"
+    assert category.name not in VAR_STORE.pull_ignore_categories, f"Category {name} is ignored by this host"
+    return category
+

@@ -28,3 +28,6 @@ class Category(PathObject):
             if local_script != existing_saved_script:
                 num_overwrites += existing_saved_script.read_from_dir(local_script_dir, category_trash)
         return num_overwrites
+
+    def get_saved_scripts(self) -> list[Script]:
+        return [Script(path) for path in self.path.iterdir() if path.is_file()]

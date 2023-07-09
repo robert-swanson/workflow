@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
+from py.utils import fzf_select
+
 """
 workflow
 ├── dotfiles
@@ -52,9 +54,11 @@ class VarStore:
     def get_host_dir(self) -> Path:
         return Path(f"{self.get_hosts_dir()}/{self.host}")
 
-    # Host Dotfiles
     def get_saved_host_dotfiles_dir(self) -> Path:
         return Path(f"{self.get_host_dir()}/dotfiles")
+
+    def get_script_templates_dir(self) -> Path:
+        return Path(f"{self.get_host_dir()}/script_templates")
 
     # Local Scripts
     def get_local_scripts_dir(self) -> Path:
@@ -91,7 +95,8 @@ def _load_var_store() -> VarStore:
         hostname = socket.gethostname()
         workflow_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
         home_directory = os.path.expanduser("~")
-        print(f"Warning, using empty var store with hostname {hostname}")
+        print(f"No var store found for {hostname}, specify one of the following to copy from:")
+        fzf_select()
         return VarStore(hostname, workflow_dir, home_directory, [])
 
 

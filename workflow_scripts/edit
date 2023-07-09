@@ -13,16 +13,16 @@ from py.path_object.script.saved_script_utils import get_saved_script
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.bash import bash
+from py.utils import bash
 
 parser = argparse.ArgumentParser(description="Edit local script then sync to saved scripts")
 parser.add_argument("name", type=str, help="name of script to edit")
 parser.add_argument("category", nargs="?", type=str, help="category to edit (required if script name is ambiguous across categories)")
 args = parser.parse_args()
 
-local_script = get_local_script(args.name)
 saved_script, category = get_saved_script(args.name, args.category)
+local_script = get_local_script(args.name)
 
-bash("vim", local_script.path)
-print(f"Saving to {category.name}")
-shutil.copy(local_script.path, saved_script.path)
+bash("vim", saved_script.path)
+shutil.copy(saved_script.path, local_script.path)
+print(f"Saved to {category.name}")

@@ -1,6 +1,20 @@
-if [ "$1" == "" ]
-then
-    echo "script name expected for removal"
-else
-    mv ~/scripts/$1 ~/workflow/trash && rm ~/workflow/scripts/*/$1
-fi
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+
+from py.var_store import make_trash_dir
+from py.path_object.script.saved_script_utils import get_saved_script
+from py.path_object.script.local_script_utils import get_local_script
+
+parser = argparse.ArgumentParser(description="Delete a script")
+parser.add_argument("name", type=str, help="name of the script to delete")
+parser.add_argument("-c", "--category", type=str, default=None, help="category for the script to delete")
+args = parser.parse_args()
+
+script, category = get_saved_script(args.name, args.category)
+trash_dir = make_trash_dir(script.name)
+script.delete(trash_dir)
+get_local_script(args.name).delete(trash_dir)
+print(f"Deleted script {args.name} from category {category.name} (trash at {trash_dir})")
