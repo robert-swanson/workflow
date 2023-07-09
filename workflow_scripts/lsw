@@ -1,2 +1,2 @@
-cd ~/workflow; find . -maxdepth 1 -type f | sed 's/\.\///g' | grep -v "\."
+cd $WORKFLOW_PATH/workflow_scripts; find . -maxdepth 1 -type f | sed 's/\.\///g' | grep -v "\."
 

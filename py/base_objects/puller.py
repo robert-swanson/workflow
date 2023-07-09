@@ -1,3 +1,4 @@
+import importlib.util
 from pathlib import Path
 
 from py.path_object.category.category_utils import get_host_categories
@@ -49,5 +50,16 @@ class BasePuller:
         print(f"Pulled host specific dotfiles")
 
 
+def host_pull_to_local():
+    path = VAR_STORE.get_host_dir() / "puller.py"
+    print(f"Pulling to local for host {VAR_STORE.host}")
+    assert path.is_file(), f"Puller script not found at {path}"
+    module_name = path.stem
+    module_spec = importlib.util.spec_from_file_location(module_name, path)
+    module = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    module.pull_to_local()
+
+
 if __name__ == '__main__':
-    BasePuller().pull_to_local()
+    host_pull_to_local()

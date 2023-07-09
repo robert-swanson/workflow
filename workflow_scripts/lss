@@ -1,1 +1,1 @@
-ls ~/scripts
+ls $WORKFLOW_PATH/local_scripts

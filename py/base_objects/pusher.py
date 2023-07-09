@@ -1,3 +1,4 @@
+import importlib.util
 from pathlib import Path
 
 from py.path_object.category.category_utils import get_host_categories
@@ -49,5 +50,16 @@ class BasePusher:
         print(f"Pushed host specific dotfiles")
 
 
+def host_push_to_saved():
+    path = VAR_STORE.get_host_dir() / "pusher.py"
+    print(f"Pushing to saved for host {VAR_STORE.host}")
+    assert path.is_file(), f"Pusher script not found at {path}"
+    module_name = path.stem
+    module_spec = importlib.util.spec_from_file_location(module_name, path)
+    module = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    module.push_to_saved()
+
+
 if __name__ == '__main__':
-    BasePusher().push_to_saved()
+    host_push_to_saved()
