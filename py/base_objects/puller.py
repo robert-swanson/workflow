@@ -3,11 +3,10 @@ from pathlib import Path
 from py.path_object.category.category_utils import get_host_categories
 from py.path_object.dotfile.global_dotfile_utils import get_saved_global_dotfiles, is_global_dotfile_name
 from py.path_object.dotfile.host_dotfile_utils import get_saved_host_dotfiles, is_host_dotfile_name
-from py.var_store import VarStore, make_trash_dir
+from py.var_store import make_trash_dir, VAR_STORE
 
 
 class BasePuller:
-    var_store: VarStore
     trash_dir: Path
 
     def __init__(self):
@@ -22,7 +21,7 @@ class BasePuller:
     def pull_scripts_to_local(self):
         overwrites = 0
         for category in get_host_categories():
-            overwrites += category.write_to_local_script_dir(self.var_store.get_local_scripts_dir(), self.trash_dir)
+            overwrites += category.write_to_local_script_dir(VAR_STORE.get_local_scripts_dir(), self.trash_dir)
         print(f"Overwrote {overwrites} scripts (old copies in {self.trash_dir})")
 
     # Dotfiles
@@ -39,14 +38,14 @@ class BasePuller:
         dotfile_trash = self._get_dotfile_trash()
         for saved_global_dotfile in get_saved_global_dotfiles():
             if is_global_dotfile_name(saved_global_dotfile.name):
-                saved_global_dotfile.write_to_dir(Path(self.var_store.home_dir), dotfile_trash)
+                saved_global_dotfile.write_to_dir(Path(VAR_STORE.home_dir), dotfile_trash)
         print(f"Pulled global dotfiles")
 
     def pull_host_dotfiles_to_local(self):
         dotfile_trash = self._get_dotfile_trash()
         for saved_host_dotfile in get_saved_host_dotfiles():
             if is_host_dotfile_name(saved_host_dotfile.name):
-                saved_host_dotfile.write_to_dir(Path(self.var_store.home_dir), dotfile_trash)
+                saved_host_dotfile.write_to_dir(Path(VAR_STORE.home_dir), dotfile_trash)
         print(f"Pulled host specific dotfiles")
 
 
