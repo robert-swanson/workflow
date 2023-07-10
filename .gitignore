@@ -1,5 +1,6 @@
 .netrwhist
 .idea
+__pycache__
 local_scripts
 venv
 scripts/optiver/*
