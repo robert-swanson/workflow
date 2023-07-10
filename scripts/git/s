@@ -1,1 +1,8 @@
-git status
+#!/bin/bash
+
+if [[ "$1" == "staged" ]]; then
+    git diff --staged --name-status
+else
+    git status
+fi
+

@@ -1,1 +1,6 @@
-git checkout master
+#!/bin/bash
+if [ ! "$(pwd | grep /home/robertswanson/dev.*/ctxf.*)" == "" ]; then
+    git checkout release_daily
+else
+    git checkout master
+fi

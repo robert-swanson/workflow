@@ -19,16 +19,33 @@ set foldmethod=syntax
 colorscheme gruvbox
 set background=dark
 
+
 " Window keybindings
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+noremap <C-n> <C-w>t<C-w>K
+noremap <C-u> <C-w>t<C-w>H
 set splitright
 
 " Tab keybindings
 map <S-h> :tabp<cr>
 map <S-l> :tabn<cr>
+map <S-l> :tabn<cr>
+
+nnoremap gf <C-W>gf
+vnoremap gf <C-W>gf
+
+" fzf
+set rtp+=/data/robertswanson/bin/fzf
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 
 " File buffer movement
 map <S-k> :bn<cr>
@@ -50,3 +67,6 @@ command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <S-z> :ZoomToggle<CR>
 
 nnoremap ,<space> :nohlsearch<CR>
+
+" Search
+set smartcase

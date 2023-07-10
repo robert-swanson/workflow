@@ -1,1 +1,22 @@
-git add $*
+#!/bin/bash
+
+files=$(changed|xargs)
+
+if [[ "$files" == "" ]]; then
+    echo "No Diff"
+    exit 0
+fi
+
+if [ ! "$(pwd | grep /home/robertswanson/dev.*/ctxf.*)" == "" ]; then
+    if [[ "$(file $files | grep "Python script")" != "" ]]; then
+        echo "Running make py-isort"
+        isort $files
+    fi
+    if [[ "$(file $files | grep "C* source")" != "" ]]; then
+        echo "Running clang format"
+        scripts/clang-format-commit.sh
+    fi
+        
+fi
+
+git add -u $*

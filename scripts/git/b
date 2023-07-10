@@ -1,1 +1,9 @@
-git branch | grep \* | cut -d ' ' -f2
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+    git branch --show-current
+else
+    cd $1 
+    git branch --show-current
+fi

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 scp ~/scripts/* rswanson@$1:scripts/
 scp ~/.vimrc rswanson@$1:~/.vimrc
 scp -r ~/.vim/colors/gruvbox.vim rswanson@$1:~/.vim/colors/gruvbox.vim

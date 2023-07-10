@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from py.utils import fzf_select
+from py.utils import fzf_select_one
 
 """
 workflow
@@ -85,19 +85,27 @@ def _get_var_store_path() -> Path:
     return Path(script_path.parent.parent / "var_store.json")
 
 
+def _deserialize_var_store(path: Path) -> VarStore:
+    return json.loads(open(path, "r").read(), object_hook=lambda d: VarStore(**d))
+
+
 def _load_var_store() -> VarStore:
     if "VAR_STORE" in globals():
         return globals()["VAR_STORE"]
     path = _get_var_store_path()
     if path.is_file():
-        return json.loads(open(path, "r").read(), object_hook=lambda d: VarStore(**d))
+        return _deserialize_var_store(path)
     else:
         hostname = socket.gethostname()
         workflow_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-        home_directory = os.path.expanduser("~")
+
         print(f"No var store found for {hostname}, specify one of the following to copy from:")
-        fzf_select()
-        return VarStore(hostname, workflow_dir, home_directory, [])
+        hosts = [str(path.name) for path in Path(f"{workflow_dir}/hosts").iterdir() if path.is_dir()]
+        copy_host = fzf_select_one(hosts)
+
+        path = Path(f"{workflow_dir}/hosts/{copy_host}/var_store.json")
+        copied_store = _deserialize_var_store(path)
+        return copied_store
 
 
 VAR_STORE = _load_var_store()
