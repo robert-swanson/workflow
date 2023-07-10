@@ -1,0 +1,1 @@
+git show $(git rev-list -1 --before="$1" master)

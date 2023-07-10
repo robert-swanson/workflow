@@ -1,0 +1,4 @@
+#!/bin/bash
+git status $* | head -2
+echo
+git diff --name-only `git newest-ancestor` $*

@@ -1,0 +1,3 @@
+#!/bin/bash
+CORE_DIR="/var/crash"
+echo "$CORE_DIR/$(ls -t $CORE_DIR  | head -1)"

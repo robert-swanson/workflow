@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+set -o xtrace
+
+
+BRANCH=$1
+
+pull && ch $BRANCH && pull && ch - && git merge $BRANCH --no-edit

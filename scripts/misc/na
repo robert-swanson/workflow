@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ALIAS_NAME=$1
+COMMAND="${@:2}"
+
+echo "alias $ALIAS_NAME=\"$COMMAND\"" >> ~/.aliases

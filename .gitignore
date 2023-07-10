@@ -1,4 +1,5 @@
 .netrwhist
+.idea
 local_scripts
 venv
 scripts/optiver/*

@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+clear
+date
+echo
+echo $*
+echo
+
+# does nothing, letting the command be the label

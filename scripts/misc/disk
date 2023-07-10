@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "Disk: $(df --output=pcent /var/home | tail -1 | awk '{print $1}')"

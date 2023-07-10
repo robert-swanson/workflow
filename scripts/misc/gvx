@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#!/bin/bash
+
+if [ "$3" == "" ]; then
+    echo "usage: gvx <command ...> <pattern> <xarg prog>"
+fi
+
+COMMAND="${@:1:$#-2}"
+PATTERN="${@:(-2):1}"
+XARG_PROG="${@: -1}"
+
+eval $COMMAND | grep -v $PATTERN | head -1 | xargs $XARG_PROG

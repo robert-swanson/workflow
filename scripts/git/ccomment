@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PERSON=$1
+MESSAGE="Changes for $PERSON's comments"
+c "$MESSAGE"

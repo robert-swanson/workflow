@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+
+COMMAND=$1
+ARGS="${@:2}"
+
+TMP=/tmp/temporary_command
+echo "set -o xtrace" > $TMP
+cat `which $COMMAND` >> $TMP
+chmod +x $TMP
+
+$TMP $ARGS

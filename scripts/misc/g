@@ -1,0 +1,6 @@
+#!/bin/bash
+
+COMMAND="${@:1:$#-1}"
+PATTERN="${@: -1}"
+
+eval $COMMAND | grep -i $PATTERN

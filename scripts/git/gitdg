@@ -1,0 +1,1 @@
+gitd `git ls-files -m | grep $1`

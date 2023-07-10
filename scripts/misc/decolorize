@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+ sed -r "s/\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g"

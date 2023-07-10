@@ -1,0 +1,8 @@
+{
+  "host": "fern",
+  "workflow_dir": "/Users/robertswanson/dev/workflow",
+  "home_dir": "/Users/robertswanson",
+  "pull_ignore_categories": [
+    "malware", "cse"
+  ]
+}

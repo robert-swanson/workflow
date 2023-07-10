@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd
+vim -p .bashrc .aliases .vimrc .ideavimrc .gitconfig .gdbinit .tmux.conf .inputrc 

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CLIP=~/clipboard.txt
+
+cat /dev/stdin >> $CLIP

@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+git ls-files -m
+
+MSG="$*"
+if [[ "$MSG" == "" ]]; then
+    read -p "Commit message: "
+    MSG=$REPLY
+fi
+add && echo "Committing..." &&  git commit -m "$MSG" > /dev/null
+if [ "$?" != 0 ]; then
+    echo " ======================== COMMIT FALIED! ========================"
+    exit 1
+else
+    echo "Commit Complete"
+    & check
+fi

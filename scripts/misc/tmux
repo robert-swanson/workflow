@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+~/dev/tmux/bin/tmux $*

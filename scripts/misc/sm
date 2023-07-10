@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ! "$(pwd | grep ^/home/robertswanson/dev.*/ctxf.*)" == "" ]; then
+    BRANCH=release_daily
+else
+    BRANCH=master
+fi
+
+git status $* | head -2
+echo 
+git diff --name-only $BRANCH

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sb $*
+git difftool `git newest-ancestor` $*

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+
+s
+echo "stashing changes"
+stsh
+git fetch
+ch $*
+s

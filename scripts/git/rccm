@@ -1,0 +1,3 @@
+#!/bin/bash
+
+resclean $(repo) && cm && pull && s

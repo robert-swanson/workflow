@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CMK=cmake-build-release
+D1=~/dev/ctxf
+D2=~/dev/duplicate_repos/ctxf-2
+D3=~/dev/duplicate_repos/ctxf-3
+
+echo "$D2/$CMK/bin/ctbv"

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+TIMES=$1
+COMMAND="${@:2}"
+BREAK_RETURN=200
+
+for try in `seq $TIMES`; do
+    if [ "$try" -gt "1" ]; then
+        echo "Retrying command [$try/$TIMES]: $2 in 5 seconds"
+        sleep 5
+    fi
+    #output=$($COMMAND)
+    $COMMAND
+    EXIT_CODE=$?
+    if [ "$EXIT_CODE" == "0" ]; then
+        exit
+    elif [ "$EXIT_CODE" == "$BREAK_RETURN" ]; then
+        echo "Command failed on first try with break return: $COMMAND"
+        exit $BREAK_RETURN
+    fi
+done
+
+echo "Command failed after $TIMES tries: $COMMAND"
+exit -1

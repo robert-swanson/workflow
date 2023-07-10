@@ -1,0 +1,14 @@
+#!/bin/bash
+
+IN="$*"
+echo #{A
+
+
+# Strip leading whitespace
+trimmed=${IN##*[![:space:]]}
+trimmed=${IN%"$trimmed"}
+
+# Strip trailing whitespace
+trimmed=${trimmed%%*[![:space:]]}
+
+echo "'$IN' -> '$trimmed'"

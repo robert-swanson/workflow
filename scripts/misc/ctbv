@@ -1,0 +1,2 @@
+# cp ~/dev/ctxf/bin/ctbv ~/sonic_conf/ctbv/ctbv
+clear; con ctbv start -f
