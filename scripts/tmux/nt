@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/home/robertswanson/dev/tmux/bin/tmux new -s "$*"
+tmux new -s "$*"
+

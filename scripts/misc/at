@@ -1,5 +1,1 @@
-#!/bin/bash
-set -e
-set -o xtrace
-
-/proc/$(pgrep tmux)/exe attach
+tmux at -t "$*"
