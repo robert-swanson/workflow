@@ -1,4 +1,5 @@
 from workflow_py.path_object.dotfile.dotfile import Dotfile
+from workflow_py.path_object.dotfile.global_dotfile_utils import get_hidden_home_file_dirs
 from workflow_py.var_store import VAR_STORE
 
 
@@ -11,4 +12,4 @@ def is_host_dotfile_name(name: str) -> bool:
 
 
 def get_local_host_dotfiles() -> list[Dotfile]:
-    return [Dotfile(dotfile) for dotfile in VAR_STORE.get_hidden_home_file_dirs() if is_host_dotfile_name(dotfile.name)]
+    return [Dotfile(dotfile) for dotfile in get_hidden_home_file_dirs() if is_host_dotfile_name(dotfile.name)]

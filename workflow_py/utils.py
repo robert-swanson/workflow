@@ -3,12 +3,14 @@ import subprocess
 from typing import Optional
 
 
-def bash(*args):
+def bash(*args, print_cmd=False):
+    if print_cmd:
+        print(" ".join(args))
     return subprocess.run(args)
 
 
 def bash_txt(*args) -> str:
-    return subprocess.run(args, capture_output=True, text=True).stdout.decode("utf-8")
+    return subprocess.run(args, capture_output=True, text=True).stdout
 
 
 def fzf_select_one(options: list[str], prompt: Optional[str] = None) -> str:

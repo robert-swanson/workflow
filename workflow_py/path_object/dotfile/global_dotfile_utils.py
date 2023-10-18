@@ -19,5 +19,5 @@ def get_saved_global_dotfiles() -> list[Dotfile]:
 
 
 def get_local_global_dotfiles() -> list[Dotfile]:
-    return [Dotfile(path) for path in VAR_STORE.get_hidden_home_file_dirs()
+    return [Dotfile(path) for path in get_hidden_home_file_dirs()
             if path.name in get_saved_global_dotfiles()]
