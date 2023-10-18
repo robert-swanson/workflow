@@ -1,7 +1,6 @@
-# run mypy on all python files in the project
+#!/usr/bin/env python3
 
 import os
-import subprocess
 import sys
 from pathlib import Path
 
@@ -20,4 +19,4 @@ for exclude_dir in exclude_dirs:
     exclude_args.append("--exclude")
     exclude_args.append(exclude_dir)
 
-bash("mypy", str(proj), "--show-column-numbers", *exclude_args, print_cmd=True)
+bash("mypy", str(proj), "--show-column-numbers", *exclude_args)
