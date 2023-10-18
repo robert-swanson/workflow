@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+CLI=('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli')
+
+"${CLI[@]}" --select-profile Dev
+

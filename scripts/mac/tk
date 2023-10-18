@@ -2,5 +2,10 @@
 set -e
 set -o xtrace
 
+CLI=('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli')
+#CLI_PATH_LIST=
 
+CURRENT_PROFILE=$("${CLI[@]}" --show-current-profile-name)
+SELECT_PROFILE=$("${CLI[@]}" --list-profile-names | grep -v "$CURRENT_PROFILE" | tail -n 1)
+"${CLI[@]}" --select-profile "$SELECT_PROFILE"
 

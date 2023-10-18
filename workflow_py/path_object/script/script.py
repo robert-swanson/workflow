@@ -37,8 +37,8 @@ class Script(PathObject):
             return False
 
         print(f"{'Updating' if dest_script.path.exists() else 'Adding'} {dest_script.describe()} <-- {self.describe()}")
-        if self.path.exists():
-            assert trash_dir is not None, f"Script {self.describe()} (specify trash_dir if you want to overwrite it)"
+        if dest_script.path.exists():
+            assert trash_dir is not None, f"{dest_script.describe()} exists already (specify trash_dir if you want to overwrite it)"
             trash_dir.mkdir(exist_ok=True, parents=True)
             shutil.move(dest_script.path, trash_dir)
         shutil.copy(self.path, dest_script.path)

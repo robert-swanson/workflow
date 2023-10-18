@@ -109,4 +109,8 @@ def _load_var_store() -> VarStore:
         return copied_store
 
 
+def get_hidden_home_file_dirs() -> list[Path]:
+    return [path for path in Path(VAR_STORE.home_dir).iterdir() if path.name.startswith(".")]
+
+
 VAR_STORE = _load_var_store()

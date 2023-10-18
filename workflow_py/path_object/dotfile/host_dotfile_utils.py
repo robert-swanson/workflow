@@ -1,6 +1,5 @@
 from workflow_py.path_object.dotfile.dotfile import Dotfile
-from workflow_py.path_object.dotfile.global_dotfile_utils import get_hidden_home_file_dirs
-from workflow_py.var_store import VAR_STORE
+from workflow_py.var_store import VAR_STORE, get_hidden_home_file_dirs
 
 
 def get_saved_host_dotfiles() -> list[Dotfile]:
