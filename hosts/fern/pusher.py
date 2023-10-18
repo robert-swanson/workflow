@@ -1,4 +1,4 @@
-from py.base_objects.pusher import BasePusher
+from workflow_py.base_objects.pusher import BasePusher
 
 
 class MacPusher(BasePusher):

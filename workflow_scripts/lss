@@ -5,7 +5,7 @@ import sys
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.var_store import VAR_STORE
+from workflow_py.var_store import VAR_STORE
 
 parser = argparse.ArgumentParser(description="List categories or scripts in a category")
 parser.add_argument("-a", "--list-all", help="lists all categories, even those ignored by this host", action="store_true")

@@ -3,9 +3,8 @@ import os
 import sys
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.base_objects.pusher import host_push_to_saved
+from workflow_py.base_objects.pusher import host_push_to_saved
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
-from py.var_store import VAR_STORE
 
 host_push_to_saved()

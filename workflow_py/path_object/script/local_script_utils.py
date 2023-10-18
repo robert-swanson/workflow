@@ -1,5 +1,5 @@
-from py.path_object.script.script import Script
-from py.var_store import VAR_STORE
+from workflow_py.path_object.script.script import Script
+from workflow_py.var_store import VAR_STORE
 
 
 def get_local_script(name: str) -> Script:

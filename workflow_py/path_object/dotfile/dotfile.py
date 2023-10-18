@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-from py.path_object.path_object import PathObject
+from workflow_py.path_object.path_object import PathObject
 
 
 class Dotfile(PathObject):

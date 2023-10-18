@@ -1,10 +1,10 @@
 import importlib.util
 from pathlib import Path
 
-from py.path_object.category.category_utils import get_host_categories
-from py.path_object.dotfile.global_dotfile_utils import get_saved_global_dotfiles, is_global_dotfile_name
-from py.path_object.dotfile.host_dotfile_utils import get_saved_host_dotfiles, is_host_dotfile_name
-from py.var_store import make_trash_dir, VAR_STORE
+from workflow_py.path_object.category.category_utils import get_host_categories
+from workflow_py.path_object.dotfile.global_dotfile_utils import get_saved_global_dotfiles, is_global_dotfile_name
+from workflow_py.path_object.dotfile.host_dotfile_utils import get_saved_host_dotfiles, is_host_dotfile_name
+from workflow_py.var_store import make_trash_dir, VAR_STORE
 
 
 class BasePuller:

@@ -4,10 +4,10 @@ import shutil
 import socket
 import sys
 
-from py.base_objects.puller import host_pull_to_local
-from py.path_object.category.category_utils import get_host_categories
-from py.utils import fzf_select_multiple, confirm
-from py.var_store import VAR_STORE
+from workflow_py.base_objects.puller import host_pull_to_local
+from workflow_py.path_object.category.category_utils import get_host_categories
+from workflow_py.utils import fzf_select_multiple, confirm
+from workflow_py.var_store import VAR_STORE
 
 copy_hostname = VAR_STORE.host
 VAR_STORE.host = socket.gethostname()

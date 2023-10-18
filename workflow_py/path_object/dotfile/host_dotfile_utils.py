@@ -1,5 +1,5 @@
-from py.path_object.dotfile.dotfile import Dotfile
-from py.var_store import VAR_STORE
+from workflow_py.path_object.dotfile.dotfile import Dotfile
+from workflow_py.var_store import VAR_STORE
 
 
 def get_saved_host_dotfiles() -> list[Dotfile]:

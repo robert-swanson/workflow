@@ -1,10 +1,10 @@
 import shutil
 from typing import Optional, List, Tuple
 
-from py.path_object.category.category import Category
-from py.path_object.category.category_utils import get_host_categories
-from py.path_object.script.script import Script
-from py.var_store import VAR_STORE
+from workflow_py.path_object.category.category import Category
+from workflow_py.path_object.category.category_utils import get_host_categories
+from workflow_py.path_object.script.script import Script
+from workflow_py.var_store import VAR_STORE
 
 
 def get_saved_script(name: str, category_name: Optional[str] = None) -> Tuple[Script, Category]:

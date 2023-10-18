@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from py.path_object.path_object import PathObject
-from py.path_object.script.script import Script
+from workflow_py.path_object.path_object import PathObject
+from workflow_py.path_object.script.script import Script
 
 
 class Category(PathObject):

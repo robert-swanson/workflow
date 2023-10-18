@@ -6,9 +6,9 @@ import sys
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.var_store import VAR_STORE
-from py.path_object.script.local_script_utils import get_local_script
-from py.path_object.script.saved_script_utils import get_saved_script, validate_script_name_available
+from workflow_py.var_store import VAR_STORE
+from workflow_py.path_object.script.local_script_utils import get_local_script
+from workflow_py.path_object.script.saved_script_utils import get_saved_script, validate_script_name_available
 
 parser = argparse.ArgumentParser(description="Rename a script")
 parser.add_argument("old_name", type=str, help="name of script to edit")

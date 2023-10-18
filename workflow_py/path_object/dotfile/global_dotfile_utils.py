@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from py.path_object.dotfile.dotfile import Dotfile
-from py.path_object.dotfile.host_dotfile_utils import is_host_dotfile_name
-from py.var_store import VAR_STORE
+from workflow_py.path_object.dotfile.dotfile import Dotfile
+from workflow_py.path_object.dotfile.host_dotfile_utils import is_host_dotfile_name
+from workflow_py.var_store import VAR_STORE
 
 
 def get_hidden_home_file_dirs() -> list[Path]:

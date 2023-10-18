@@ -1,5 +1,5 @@
-from py.path_object.category.category import Category
-from py.var_store import VAR_STORE
+from workflow_py.path_object.category.category import Category
+from workflow_py.var_store import VAR_STORE
 
 
 def get_host_categories(get_all=False) -> list[Category]:

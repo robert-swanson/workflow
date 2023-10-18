@@ -8,12 +8,12 @@ import os
 import shutil
 import sys
 
-from py.path_object.script.local_script_utils import get_local_script
-from py.path_object.script.saved_script_utils import get_saved_script
+from workflow_py.path_object.script.local_script_utils import get_local_script
+from workflow_py.path_object.script.saved_script_utils import get_saved_script
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.utils import bash
+from workflow_py.utils import bash
 
 parser = argparse.ArgumentParser(description="Edit local script then sync to saved scripts")
 parser.add_argument("name", type=str, help="name of script to edit")

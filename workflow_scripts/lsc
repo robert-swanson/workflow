@@ -5,7 +5,7 @@ import sys
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.path_object.category.category_utils import get_host_categories, get_category_with_name
+from workflow_py.path_object.category.category_utils import get_host_categories, get_category_with_name
 
 parser = argparse.ArgumentParser(description="List categories or scripts in a category")
 parser.add_argument("-a", "--list-all", default=False, action="store_true", help="lists all categories, even those ignored by this host")

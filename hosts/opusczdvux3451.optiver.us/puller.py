@@ -1,4 +1,4 @@
-from py.base_objects.puller import BasePuller
+from workflow_py.base_objects.puller import BasePuller
 
 
 class MacPuller(BasePuller):

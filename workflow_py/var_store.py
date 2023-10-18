@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from py.utils import fzf_select_one
+from workflow_py.utils import fzf_select_one
 
 """
 workflow

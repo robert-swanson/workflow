@@ -4,9 +4,9 @@ import os
 import sys
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 
-from py.var_store import make_trash_dir
-from py.path_object.script.saved_script_utils import get_saved_script
-from py.path_object.script.local_script_utils import get_local_script
+from workflow_py.var_store import make_trash_dir
+from workflow_py.path_object.script.saved_script_utils import get_saved_script
+from workflow_py.path_object.script.local_script_utils import get_local_script
 
 parser = argparse.ArgumentParser(description="Delete a script")
 parser.add_argument("name", type=str, help="name of the script to delete")

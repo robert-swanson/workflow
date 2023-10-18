@@ -3,8 +3,8 @@ import shutil
 from pathlib import Path
 from typing import Optional
 
-from py.path_object.path_object import PathObject
-from py.var_store import VAR_STORE
+from workflow_py.path_object.path_object import PathObject
+from workflow_py.var_store import VAR_STORE
 
 
 class Script(PathObject):
