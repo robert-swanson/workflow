@@ -74,9 +74,9 @@ class VarStore:
 
 
 # Trash
-def make_trash_dir(prefix: str) -> Path:
-    trash_dir = Path(f"/tmp/workflow_trash_{prefix}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
-    trash_dir.mkdir(exist_ok=False)
+def make_trash_dir() -> Path:
+    trash_dir = Path(f"/tmp/workflow_trash/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+    trash_dir.mkdir(exist_ok=False, parents=True)
     return trash_dir
 
 

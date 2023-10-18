@@ -1,53 +1,53 @@
 import importlib.util
 from pathlib import Path
+from typing import Optional
 
+from workflow_py.base_objects.updater import Updater
 from workflow_py.path_object.category.category_utils import get_host_categories
 from workflow_py.path_object.dotfile.global_dotfile_utils import get_saved_global_dotfiles, is_global_dotfile_name
 from workflow_py.path_object.dotfile.host_dotfile_utils import get_saved_host_dotfiles, is_host_dotfile_name
 from workflow_py.var_store import VarStore, VAR_STORE, make_trash_dir
 
 
-class BasePusher:
-    var_store: VarStore
-    trash_dir: Path
-
-    def __init__(self):
-        self.trash_dir = make_trash_dir(prefix="overwritten_saved_scripts")
-
+class BasePusher(Updater):
     def push_to_saved(self):
-        self.push_scripts_to_saved()
-        self.push_dotfiles_to_saved()
+        written_scripts = self.push_scripts_to_saved()
+        written_global_files = self.push_global_dotfiles_to_saved()
+        written_host_files = self.push_host_dotfiles_to_saved()
+        writes = written_scripts + written_global_files + written_host_files
+        if writes > 0:
+            print(f"Saved {writes} total files")
 
     # Scripts
-    def push_scripts_to_saved(self):
-        overwrites = 0
+    def push_scripts_to_saved(self) -> int:
+        num_writes = 0
+        trash = self._get_trash_dir("saved_scripts")
         for category in get_host_categories():
-            overwrites += category.read_from_local_script_dir(VAR_STORE.get_local_scripts_dir(), self.trash_dir)
-        print(f"Overwrote {overwrites} scripts (old copies in {self.trash_dir})")
+            num_writes += category.read_from_local_script_dir(VAR_STORE.get_local_scripts_dir(), trash)
+        if num_writes > 0:
+            print(f"{num_writes} scripts saved (old saves in {trash})")
+        return num_writes
 
     # Dotfiles
-    def _get_dotfile_trash(self) -> Path:
-        dotfile_trash = Path(f"{self.trash_dir}/dotfiles")
-        dotfile_trash.mkdir(exist_ok=True)
-        return dotfile_trash
-
-    def push_dotfiles_to_saved(self):
-        self.push_global_dotfiles_to_saved()
-        self.push_host_dotfiles_to_saved()
-
-    def push_global_dotfiles_to_saved(self):
-        dotfile_trash = self._get_dotfile_trash()
+    def push_global_dotfiles_to_saved(self) -> int:
+        num_writes = 0
+        trash = self._get_trash_dir("saved_global_dotfiles")
         for saved_global_dotfile in get_saved_global_dotfiles():
             if is_global_dotfile_name(saved_global_dotfile.name):
-                saved_global_dotfile.read_from_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Saved global dotfiles")
+                num_writes += saved_global_dotfile.read_from_dir(Path(VAR_STORE.home_dir), trash)
+        if num_writes > 0:
+            print(f"{num_writes} global dotfiles saved (old saves in {trash})")
+        return num_writes
 
-    def push_host_dotfiles_to_saved(self):
-        dotfile_trash = self._get_dotfile_trash()
+    def push_host_dotfiles_to_saved(self) -> int:
+        num_writes = 0
+        trash = self._get_trash_dir("saved_host_dotfiles")
         for saved_host_dotfile in get_saved_host_dotfiles():
             if is_host_dotfile_name(saved_host_dotfile.name):
-                saved_host_dotfile.read_from_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Saved host specific dotfiles")
+                num_writes += saved_host_dotfile.read_from_dir(Path(VAR_STORE.home_dir), trash)
+        if num_writes > 0:
+            print(f"{num_writes} host dotfiles saved (old saves in {trash})")
+        return num_writes
 
 
 def host_push_to_saved():

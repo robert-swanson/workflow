@@ -1,53 +1,57 @@
 import importlib.util
 from pathlib import Path
 
+from workflow_py.base_objects.updater import Updater
 from workflow_py.path_object.category.category_utils import get_host_categories
 from workflow_py.path_object.dotfile.global_dotfile_utils import get_saved_global_dotfiles, is_global_dotfile_name
 from workflow_py.path_object.dotfile.host_dotfile_utils import get_saved_host_dotfiles, is_host_dotfile_name
 from workflow_py.var_store import make_trash_dir, VAR_STORE
 
 
-class BasePuller:
-    trash_dir: Path
-
-    def __init__(self):
-        self.trash_dir = make_trash_dir(prefix="overwritten_local_scripts")
-
+class BasePuller(Updater):
     def pull_to_local(self):
-        self.pull_scripts_to_local()
-        self.pull_host_dotfiles_to_local()
-        self.pull_global_dotfiles_to_local()
+        loaded_scripts = self.pull_scripts_to_local()
+        loaded_global_files = self.pull_global_dotfiles_to_local()
+        loaded_host_files = self.pull_host_dotfiles_to_local()
+        loads = loaded_scripts + loaded_global_files + loaded_host_files
+        if loads > 0:
+            print(f"Loaded {loads} total files")
 
     # Scripts
     def pull_scripts_to_local(self):
-        overwrites = 0
+        trash = self._get_trash_dir("local_scripts")
+        num_writes = 0
         for category in get_host_categories():
-            overwrites += category.write_to_local_script_dir(VAR_STORE.get_local_scripts_dir(), self.trash_dir)
-        print(f"Overwrote {overwrites} scripts (old copies in {self.trash_dir})")
+            num_writes += category.write_to_local_script_dir(VAR_STORE.get_local_scripts_dir(), trash)
+        if num_writes > 0:
+            print(f"{num_writes} scripts loaded locally (old copies in {trash})")
+        return num_writes
 
     # Dotfiles
-    def _get_dotfile_trash(self) -> Path:
-        dotfile_trash = Path(f"{self.trash_dir}/dotfiles")
-        dotfile_trash.mkdir(exist_ok=True)
-        return dotfile_trash
-
     def pull_dotfiles_to_local(self):
-        self.pull_global_dotfiles_to_local()
-        self.pull_host_dotfiles_to_local()
+        global_loads = self.pull_global_dotfiles_to_local()
+        host_loads = self.pull_host_dotfiles_to_local()
+        return global_loads + host_loads
 
-    def pull_global_dotfiles_to_local(self):
-        dotfile_trash = self._get_dotfile_trash()
+    def pull_global_dotfiles_to_local(self) -> int:
+        trash = self._get_trash_dir("local_global_dotfiles")
+        num_writes = 0
         for saved_global_dotfile in get_saved_global_dotfiles():
             if is_global_dotfile_name(saved_global_dotfile.name):
-                saved_global_dotfile.write_to_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Pulled global dotfiles")
+                num_writes += saved_global_dotfile.write_to_dir(Path(VAR_STORE.home_dir), trash)
+        if num_writes > 0:
+            print(f"{num_writes} global dotfiles loaded locally (old copies in {trash})")
+        return num_writes
 
-    def pull_host_dotfiles_to_local(self):
-        dotfile_trash = self._get_dotfile_trash()
+    def pull_host_dotfiles_to_local(self) -> int:
+        trash = self._get_trash_dir("local_host_dotfiles")
+        num_writes = 0
         for saved_host_dotfile in get_saved_host_dotfiles():
             if is_host_dotfile_name(saved_host_dotfile.name):
-                saved_host_dotfile.write_to_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Pulled host specific dotfiles")
+                num_writes += saved_host_dotfile.write_to_dir(Path(VAR_STORE.home_dir), trash)
+        if num_writes > 0:
+            print(f"{num_writes} host dotfiles loaded locally (old copies in {trash})")
+        return num_writes
 
 
 def host_pull_to_local():

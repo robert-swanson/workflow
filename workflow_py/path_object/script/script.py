@@ -28,26 +28,25 @@ class Script(PathObject):
         else:
             return f"saved script: {self.path.relative_to(VAR_STORE.get_scripts_dir())}"
 
-    def write_to_dir(self, dest_dir: Path, trash_dir: Optional[Path] = None):
+    def write_to_dir(self, dest_dir: Path, trash_dir: Optional[Path] = None) -> bool:
         dest_script = Script(Path(f"{dest_dir}/{self.name}"))
+        if not self.path.exists():
+            print(f"Cannot copy from {self.path} it does not exist")
+            return False
+        if self == dest_script:
+            return False
+
+        print(f"{'Updating' if dest_script.path.exists() else 'Adding'} {dest_script.describe()} <-- {self.describe()}")
         if dest_script.path.exists():
-            assert trash_dir is not None, f"Script {self.name} already exists in {dest_dir} (specify trash_dir if you want to overwrite it)"
+            assert trash_dir is not None, f"Script {self.describe()} (specify trash_dir if you want to overwrite it)"
             shutil.move(dest_script.path, trash_dir)
-            print(f"Overwrote {dest_script.path}")
-        print(f"Writing {self.path} to {dest_script.path}")
         shutil.copy(self.path, dest_script.path)
         Script(dest_script.path).make_executable()
+        return True
 
     def read_from_dir(self, source_dir: Path, trash_dir: Path) -> bool:
         source_script = Script(Path(f"{source_dir}/{self.name}"))
-        if not source_script.path.exists():
-            print(f"Unable to update script, '{source_script.path}' does not exist")
-            return False
-        shutil.move(self.path, trash_dir)
-        shutil.copy(source_script.path, self.path)
-        self.make_executable()
-        print(f"Overwrote {self.path.relative_to(VAR_STORE.get_scripts_dir())}")
-        return True
+        return source_script.write_to_dir(self.path.parent, trash_dir)
 
     def make_executable(self):
         os.chmod(self.path, 0o755)

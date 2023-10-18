@@ -33,26 +33,25 @@ class Dotfile(PathObject):
     def __repr__(self):
         return self.describe()
 
-    def write_to_dir(self, dest_dir: Path, trash_dir: Path):
+    def write_to_dir(self, dest_dir: Path, trash_dir: Path) -> bool:
         dest_dotfile = Dotfile(Path(f"{dest_dir}/{self.name}"))
-        overwrite = self.path.exists()
-        if not dest_dotfile.path.exists():
-            print(f"Failed because the source does not exist")
+        if not self.path.exists():
+            print(f"Cannot copy from {self.path} it does not exist")
             return False
         if self == dest_dotfile:
             return False
 
-        print(f"\t{'Updating' if overwrite else 'Adding'} {dest_dotfile.describe()} <-- {self.describe()}")
-        if overwrite:
-            shutil.move(self.path, trash_dir)
+        print(f"{'Updating' if dest_dotfile.path.exists() else 'Adding'} {dest_dotfile.describe()} <-- {self.describe()}")
+        if dest_dotfile.path.exists():
+            shutil.move(dest_dotfile.path, trash_dir)
         if dest_dotfile.path.is_file():
-            shutil.copy(dest_dotfile.path, self.path.parent)
+            shutil.copy(self.path.parent, dest_dotfile.path)
         elif dest_dotfile.path.is_dir():
-            shutil.copytree(dest_dotfile.path, self.path)
+            shutil.copytree(self.path, dest_dotfile.path)
         else:
             print(f"Failed because the source is not a file or directory")
             raise ValueError
-        return overwrite
+        return True
 
     def read_from_dir(self, source_dir: Path, trash_dir: Path) -> bool:
         source_dotfile = Dotfile(Path(f"{source_dir}/{self.name}"))
