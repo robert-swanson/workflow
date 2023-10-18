@@ -40,14 +40,14 @@ class BasePusher:
         for saved_global_dotfile in get_saved_global_dotfiles():
             if is_global_dotfile_name(saved_global_dotfile.name):
                 saved_global_dotfile.read_from_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Pushed global dotfiles")
+        print(f"Saved global dotfiles")
 
     def push_host_dotfiles_to_saved(self):
         dotfile_trash = self._get_dotfile_trash()
         for saved_host_dotfile in get_saved_host_dotfiles():
             if is_host_dotfile_name(saved_host_dotfile.name):
                 saved_host_dotfile.read_from_dir(Path(VAR_STORE.home_dir), dotfile_trash)
-        print(f"Pushed host specific dotfiles")
+        print(f"Saved host specific dotfiles")
 
 
 def host_push_to_saved():

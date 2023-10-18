@@ -8,3 +8,6 @@ class PathObject:
     def __init__(self, path: Path):
         self.name = path.name
         self.path = path
+
+    def describe(self) -> str:
+        return str(self.path)

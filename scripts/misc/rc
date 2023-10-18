@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd
-vim -p .bashrc .aliases .vimrc .ideavimrc .gitconfig .gdbinit .tmux.conf .inputrc 
+vim -p .bashrc .bash_profile .aliases .vimrc .ideavimrc .gitconfig .gdbinit .tmux.conf .inputrc 

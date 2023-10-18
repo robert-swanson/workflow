@@ -21,6 +21,13 @@ class Script(PathObject):
     def get_category(self) -> str:
         return self.path.parent.name
 
+    def describe(self) -> str:
+        local_scripts = VAR_STORE.get_local_scripts_dir()
+        if str(self.path).startswith(local_scripts):
+            return f"local script: {self.path.relative_to(local_scripts)}"
+        else:
+            return f"saved script: {self.path.relative_to(VAR_STORE.get_scripts_dir())}"
+
     def write_to_dir(self, dest_dir: Path, trash_dir: Optional[Path] = None):
         dest_script = Script(Path(f"{dest_dir}/{self.name}"))
         if dest_script.path.exists():
@@ -39,7 +46,7 @@ class Script(PathObject):
         shutil.move(self.path, trash_dir)
         shutil.copy(source_script.path, self.path)
         self.make_executable()
-        print(f"Overwrote {self.path}")
+        print(f"Overwrote {self.path.relative_to(VAR_STORE.get_scripts_dir())}")
         return True
 
     def make_executable(self):
