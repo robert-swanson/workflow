@@ -43,10 +43,11 @@ class Dotfile(PathObject):
 
         print(f"{'Updating' if dest_dotfile.path.exists() else 'Adding'} {dest_dotfile.describe()} <-- {self.describe()}")
         if dest_dotfile.path.exists():
+            trash_dir.mkdir(exist_ok=True, parents=True)
             shutil.move(dest_dotfile.path, trash_dir)
-        if dest_dotfile.path.is_file():
-            shutil.copy(self.path.parent, dest_dotfile.path)
-        elif dest_dotfile.path.is_dir():
+        if self.path.is_file():
+            shutil.copy(self.path, dest_dotfile.path)
+        elif self.path.is_dir():
             shutil.copytree(self.path, dest_dotfile.path)
         else:
             print(f"Failed because the source is not a file or directory")

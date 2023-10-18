@@ -15,5 +15,4 @@ class Updater:
             dotfile_trash = Path(f"{self._trash_dir}")
         else:
             dotfile_trash = Path(f"{self._trash_dir}/{name}")
-        dotfile_trash.mkdir(exist_ok=True)
         return dotfile_trash

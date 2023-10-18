@@ -5,6 +5,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 from workflow_py.utils import fzf_select_one
 
@@ -74,8 +75,8 @@ class VarStore:
 
 
 # Trash
-def make_trash_dir() -> Path:
-    trash_dir = Path(f"/tmp/workflow_trash/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+def make_trash_dir(name: Optional[str] = None) -> Path:
+    trash_dir = Path(f"/tmp/workflow_trash/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}{f'_{name}' if name else ''}")
     trash_dir.mkdir(exist_ok=False, parents=True)
     return trash_dir
 

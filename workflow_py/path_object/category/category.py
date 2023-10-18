@@ -10,7 +10,6 @@ class Category(PathObject):
 
     def write_to_local_script_dir(self, dest_dir: Path, trash_dir: Path) -> int:
         category_trash = Path(f"{trash_dir}/{self.name}")
-        category_trash.mkdir(exist_ok=True)
         num_overwrites = 0
         for script in self.get_scripts():
             new_script = Script(Path(f"{dest_dir}/{script.name}"))
@@ -21,7 +20,6 @@ class Category(PathObject):
 
     def read_from_local_script_dir(self, local_script_dir: Path, trash_dir: Path) -> int:
         category_trash = Path(f"{trash_dir}/{self.name}")
-        category_trash.mkdir(exist_ok=True)
         num_overwrites = 0
         for existing_saved_script in self.get_scripts():
             local_script = Script(Path(f"{local_script_dir}/{existing_saved_script.name}"))

@@ -3,8 +3,8 @@ from workflow_py.var_store import VAR_STORE
 
 
 def get_local_script(name: str) -> Script:
-    path = VAR_STORE.get_local_scripts_dir() / name
-    if not path.is_file():
-        raise FileNotFoundError(f"Script {name} does not exist")
-    return Script(path)
+    script = Script(VAR_STORE.get_local_scripts_dir() / name)
+    if not script.path.is_file():
+        raise FileNotFoundError(f"{script.describe()} does not exist")
+    return script
 

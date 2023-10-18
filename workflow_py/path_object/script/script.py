@@ -22,11 +22,11 @@ class Script(PathObject):
         return self.path.parent.name
 
     def describe(self) -> str:
-        local_scripts = VAR_STORE.get_local_scripts_dir()
+        local_scripts = str(VAR_STORE.get_local_scripts_dir())
         if str(self.path).startswith(local_scripts):
-            return f"local script: {self.path.relative_to(local_scripts)}"
+            return f"local script '{self.path.relative_to(local_scripts)}'"
         else:
-            return f"saved script: {self.path.relative_to(VAR_STORE.get_scripts_dir())}"
+            return f"saved script '{self.path.relative_to(VAR_STORE.get_scripts_dir())}'"
 
     def write_to_dir(self, dest_dir: Path, trash_dir: Optional[Path] = None) -> bool:
         dest_script = Script(Path(f"{dest_dir}/{self.name}"))
@@ -37,8 +37,9 @@ class Script(PathObject):
             return False
 
         print(f"{'Updating' if dest_script.path.exists() else 'Adding'} {dest_script.describe()} <-- {self.describe()}")
-        if dest_script.path.exists():
+        if self.path.exists():
             assert trash_dir is not None, f"Script {self.describe()} (specify trash_dir if you want to overwrite it)"
+            trash_dir.mkdir(exist_ok=True, parents=True)
             shutil.move(dest_script.path, trash_dir)
         shutil.copy(self.path, dest_script.path)
         Script(dest_script.path).make_executable()

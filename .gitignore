@@ -4,3 +4,4 @@ __pycache__
 local_scripts
 venv
 scripts/optiver/*
+var_store.json

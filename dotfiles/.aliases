@@ -1,0 +1,4 @@
+alias la="source ~/.aliases"
+alias lr="source ~/.bashrc"
+alias workflow="cd /Users/robertswanson/dev/workflow/"
+alias karabiner_cli="/Library/Application\ Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli"

@@ -5,13 +5,12 @@ set -e
 cd "$WORKFLOW_PATH"
 changes=$(git status --porcelain | sed s/^...// | xargs)
 changes=${changes// /, }
-echo $changes
+git add -A
+git status
 read -p "Do you want to apply changes to all of these scripts? [y/N] " -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    echo "Adding..." 
-    git add -A
-
     echo "Committing..."
     git commit -m "$changes"
 

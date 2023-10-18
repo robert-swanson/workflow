@@ -25,7 +25,7 @@ class BasePusher(Updater):
         for category in get_host_categories():
             num_writes += category.read_from_local_script_dir(VAR_STORE.get_local_scripts_dir(), trash)
         if num_writes > 0:
-            print(f"{num_writes} scripts saved (old saves in {trash})")
+            print(f"{num_writes} scripts saved (old saves in {trash})\n")
         return num_writes
 
     # Dotfiles
@@ -36,7 +36,7 @@ class BasePusher(Updater):
             if is_global_dotfile_name(saved_global_dotfile.name):
                 num_writes += saved_global_dotfile.read_from_dir(Path(VAR_STORE.home_dir), trash)
         if num_writes > 0:
-            print(f"{num_writes} global dotfiles saved (old saves in {trash})")
+            print(f"{num_writes} global dotfiles saved (old saves in {trash})\n")
         return num_writes
 
     def push_host_dotfiles_to_saved(self) -> int:
@@ -46,7 +46,7 @@ class BasePusher(Updater):
             if is_host_dotfile_name(saved_host_dotfile.name):
                 num_writes += saved_host_dotfile.read_from_dir(Path(VAR_STORE.home_dir), trash)
         if num_writes > 0:
-            print(f"{num_writes} host dotfiles saved (old saves in {trash})")
+            print(f"{num_writes} host dotfiles saved (old saves in {trash})\n")
         return num_writes
 
 

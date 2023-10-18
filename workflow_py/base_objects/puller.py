@@ -24,7 +24,7 @@ class BasePuller(Updater):
         for category in get_host_categories():
             num_writes += category.write_to_local_script_dir(VAR_STORE.get_local_scripts_dir(), trash)
         if num_writes > 0:
-            print(f"{num_writes} scripts loaded locally (old copies in {trash})")
+            print(f"{num_writes} scripts loaded locally (old copies in {trash})\n")
         return num_writes
 
     # Dotfiles
@@ -40,7 +40,7 @@ class BasePuller(Updater):
             if is_global_dotfile_name(saved_global_dotfile.name):
                 num_writes += saved_global_dotfile.write_to_dir(Path(VAR_STORE.home_dir), trash)
         if num_writes > 0:
-            print(f"{num_writes} global dotfiles loaded locally (old copies in {trash})")
+            print(f"{num_writes} global dotfiles loaded locally (old copies in {trash})\n")
         return num_writes
 
     def pull_host_dotfiles_to_local(self) -> int:
@@ -50,7 +50,7 @@ class BasePuller(Updater):
             if is_host_dotfile_name(saved_host_dotfile.name):
                 num_writes += saved_host_dotfile.write_to_dir(Path(VAR_STORE.home_dir), trash)
         if num_writes > 0:
-            print(f"{num_writes} host dotfiles loaded locally (old copies in {trash})")
+            print(f"{num_writes} host dotfiles loaded locally (old copies in {trash})\n")
         return num_writes
 
 
