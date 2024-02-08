@@ -26,7 +26,11 @@ def fzf_select_one(options: list[str], prompt: Optional[str] = None) -> str:
         if prompt is None:
             prompt = "Select one of the following"
         selection = input(f"{prompt}: {options}:\n")
-    assert selection in options, f"Invalid selection: {selection}"
+
+    if selection not in options:
+        print(f"Invalid selection: {selection}")
+        return fzf_select_one(options, prompt)
+
     print(f"Selected {selection}")
     return selection
 
@@ -49,11 +53,23 @@ def fzf_select_multiple(options: list[str], prompt: Optional[str] = None, min_re
         selections = input(f"{prompt}: {options}:\n").split(",")
 
     selections = [selection.strip() for selection in selections]
+    is_valid = True
 
-    assert len(selections) >= min_required, f"Must select at least {min_required} selections"
-    assert max_allowed is None or len(selections) <= max_allowed, f"Must select at most {max_allowed} selections"
+    if len(selections) < min_required:
+        print(f"Must select at least {min_required} selections")
+        is_valid = False
+
+    if max_allowed is not None and len(selections) > max_allowed:
+        print(f"Must select at most {max_allowed} selections")
+        is_valid = False
+
     for selection in selections:
-        assert selection in options, f"Invalid selection: {selection}"
+        if selection not in options:
+            print(f"Invalid selection: {selection}")
+            is_valid = False
+
+    if not is_valid:
+        return fzf_select_multiple(options, prompt, min_required, max_allowed)
 
     print(f"Selected {selections}")
     return selections
