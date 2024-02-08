@@ -32,11 +32,10 @@ if not host_dir.exists():
 else:
     print(f"Host directory {host_dir} already exists. Skipping copy.")
 
-if confirm("Want to save VAR_STORE?"):
-    print("Saving VAR_STORE...")
-    VAR_STORE.write()
+print("Saving VAR_STORE...")
+VAR_STORE.write()
 
-if confirm("Want to pull?"):
+if confirm("Want to pull scripts into local?"):
     host_pull_to_local()
 
 print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflow_dir}")

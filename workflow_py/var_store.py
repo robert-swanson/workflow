@@ -48,32 +48,38 @@ class VarStore:
 
     # Global Dotfiles
     def get_global_dotfiles_dir(self) -> Path:
-        return Path(f"{self.workflow_dir}/dotfiles")
+        return make_assured_dir(f"{self.workflow_dir}/dotfiles")
 
     # Hosts
     def get_hosts_dir(self) -> Path:
-        return Path(f"{self.workflow_dir}/hosts/")
+        return make_assured_dir(f"{self.workflow_dir}/hosts/")
 
     def get_host_dir(self) -> Path:
-        return Path(f"{self.get_hosts_dir()}/{self.host}")
+        return make_assured_dir(f"{self.get_hosts_dir()}/{self.host}")
 
     def get_saved_host_dotfiles_dir(self) -> Path:
-        return Path(f"{self.get_host_dir()}/dotfiles")
+        return make_assured_dir(f"{self.get_host_dir()}/dotfiles")
 
     def get_script_templates_dir(self) -> Path:
-        return Path(f"{self.get_host_dir()}/script_templates")
+        return make_assured_dir(f"{self.get_host_dir()}/script_templates")
 
     # Local Scripts
     def get_local_scripts_dir(self) -> Path:
-        return Path(f"{self.workflow_dir}/local_scripts")
+        return make_assured_dir(f"{self.workflow_dir}/local_scripts")
 
     # Scripts / Categories
     def get_scripts_dir(self) -> Path:
-        return Path(f"{self.workflow_dir}/scripts")
+        return make_assured_dir(f"{self.workflow_dir}/scripts")
 
     # Workflow Scripts
     def get_workflow_scripts_dir(self) -> Path:
-        return Path(f"{self.workflow_dir}/workflow_scripts")
+        return make_assured_dir(f"{self.workflow_dir}/workflow_scripts")
+
+
+def make_assured_dir(path_str: str) -> Path:
+    path = Path(path_str)
+    path.mkdir(exist_ok=True, parents=True)
+    return path
 
 
 # Trash
