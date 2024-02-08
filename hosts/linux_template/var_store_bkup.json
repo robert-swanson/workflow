@@ -1,0 +1,8 @@
+{
+    "host": "linux_template",
+    "workflow_dir": "~/workflow",
+    "home_dir": "~",
+    "pull_ignore_categories": [
+        "malware"
+    ]
+}

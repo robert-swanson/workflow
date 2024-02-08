@@ -43,6 +43,8 @@ class VarStore:
     def write(self):
         with open(_get_var_store_path(), "w") as f:
             f.write(json.dumps(self.__dict__, indent=4))
+        with open(_get_var_store_bkup_path(self.host), "w") as f:
+            f.write(json.dumps(self.__dict__, indent=4))
 
     # Global Dotfiles
     def get_global_dotfiles_dir(self) -> Path:
@@ -81,6 +83,11 @@ def make_trash_dir(name: Optional[str] = None) -> Path:
     return trash_dir
 
 
+def _get_var_store_bkup_path(host: str) -> Path:
+    script_path = Path(__file__).resolve()
+    return Path(script_path.parent.parent / f"hosts/{host}/var_store_bkup.json")
+
+
 def _get_var_store_path() -> Path:
     script_path = Path(__file__).resolve()
     return Path(script_path.parent.parent / "var_store.json")
@@ -104,9 +111,7 @@ def _load_var_store() -> VarStore:
         hosts = [str(path.name) for path in Path(f"{workflow_dir}/hosts").iterdir() if path.is_dir()]
         copy_host = fzf_select_one(hosts)
 
-        path = Path(f"{workflow_dir}/hosts/{copy_host}/var_store.json")
-        copied_store = _deserialize_var_store(path)
-        return copied_store
+        return _deserialize_var_store(_get_var_store_bkup_path(copy_host))
 
 
 def get_hidden_home_file_dirs() -> list[Path]:

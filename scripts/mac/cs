@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+osascript <<END
+tell application "System Events"
+    -- part 1: press and keep holding
+    key down 63
+    key down "c"
+    -- part 2: lets keep them pressed for 2 seconds
+    delay .1
+    -- part 3: release the keys
+    key up "c"
+    key up 63
+end tell
+END
