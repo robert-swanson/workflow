@@ -6,7 +6,7 @@ import sys
 
 from workflow_py.base_objects.puller import host_pull_to_local
 from workflow_py.path_object.category.category_utils import get_host_categories
-from workflow_py.utils import fzf_select_multiple, confirm
+from workflow_py.utils import fzf_select_multiple, confirm, fzf_select_one
 from workflow_py.var_store import VAR_STORE
 
 copy_hostname = VAR_STORE.host
@@ -39,5 +39,10 @@ if confirm("Want to pull scripts into local?"):
     host_pull_to_local()
 
 print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflow_dir}")
+if confirm("Add environment vars .bashrc?"):
+    with open(os.path.expanduser("~/.bashrc"), "a") as file:
+        file.write("\n\n# Workflow Setup\n")
+        file.write(f'\nexport WORKFLOW_PATH="{VAR_STORE.workflow_dir}"\n')
+        file.write(f'export PATH="$PATH:$WORKFLOW_PATH/workflow_scripts:$WORKFLOW_PATH/local_scripts"\n')
 print("Setup complete!")
 
