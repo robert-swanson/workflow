@@ -20,10 +20,8 @@ VAR_STORE.pull_ignore_categories.extend(pull_ignore_categories)
 
 
 host_dir = VAR_STORE.get_host_dir()
-should_overwrite = not host_dir.exists() or [p.name for p in host_dir.iterdir()] == ["var_store_bkup.json"]
-print([p.name for p in host_dir.iterdir()])
 
-if should_overwrite:
+if len([p.name for p in host_dir.iterdir()]) <= 1 or confirm("Host directory already exists. Overwrite?"):
     copy_host_dir = VAR_STORE.get_hosts_dir() / copy_hostname
     host_dir = VAR_STORE.get_host_dir()
     print(f"Copying {copy_host_dir} to {host_dir}")
@@ -33,7 +31,7 @@ if should_overwrite:
     except FileExistsError:
         print(f"Directory {VAR_STORE.get_scripts_dir()} already exists. Running pull may overwrite local scripts")
 else:
-    print(f"Host directory {host_dir} already exists. Skipping copy.")
+    print(f"Skipping copy")
 
 print("Saving VAR_STORE...")
 VAR_STORE.write()
