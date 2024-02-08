@@ -18,18 +18,13 @@ category_names = [category.name for category in get_host_categories(get_all=True
 pull_ignore_categories = fzf_select_multiple(category_names, "Select categories to ignore when pulling")
 VAR_STORE.pull_ignore_categories.extend(pull_ignore_categories)
 
-
 host_dir = VAR_STORE.get_host_dir()
 
 if len([p.name for p in host_dir.iterdir()]) <= 1 or confirm("Host directory already exists. Overwrite?"):
     copy_host_dir = VAR_STORE.get_hosts_dir() / copy_hostname
     host_dir = VAR_STORE.get_host_dir()
     print(f"Copying {copy_host_dir} to {host_dir}")
-    shutil.copytree(copy_host_dir, host_dir)
-    try:
-        VAR_STORE.get_local_scripts_dir().mkdir(exist_ok=False)
-    except FileExistsError:
-        print(f"Directory {VAR_STORE.get_scripts_dir()} already exists. Running pull may overwrite local scripts")
+    shutil.copytree(copy_host_dir, host_dir, dirs_exist_ok=True)
 else:
     print(f"Skipping copy")
 
@@ -37,6 +32,9 @@ print("Saving VAR_STORE...")
 VAR_STORE.write()
 
 if confirm("Want to pull scripts into local?"):
+    if len([d for d in VAR_STORE.get_local_scripts_dir().iterdir()]) > 0:
+        if confirm("Local scripts directory is not empty, this may overwrite local copies. Continue?"):
+            host_pull_to_local()
     host_pull_to_local()
 
 print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflow_dir}")
@@ -48,4 +46,3 @@ if confirm("Add environment vars .bashrc?"):
         file.write(f'export PYTHONPATH="$PYTHONPATH:$WORKFLOW_PATH"\n')
     print("Be sure to run `source ~/.bashrc` to apply changes")
 print("Setup complete!")
-
