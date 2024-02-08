@@ -42,7 +42,9 @@ print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflo
 if confirm("Add environment vars .bashrc?"):
     with open(os.path.expanduser("~/.bashrc"), "a") as file:
         file.write("\n\n# Workflow Setup\n")
-        file.write(f'\nexport WORKFLOW_PATH="{VAR_STORE.workflow_dir}"\n')
+        file.write(f'export WORKFLOW_PATH="{VAR_STORE.workflow_dir}"\n')
         file.write(f'export PATH="$PATH:$WORKFLOW_PATH/workflow_scripts:$WORKFLOW_PATH/local_scripts"\n')
+        file.write(f'export PYTHONPATH="$PYTHONPATH:$WORKFLOW_PATH"\n')
+    print("Be sure to run `source ~/.bashrc` to apply changes")
 print("Setup complete!")
 
