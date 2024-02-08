@@ -37,7 +37,6 @@ if confirm("Want to pull scripts into local?"):
             host_pull_to_local()
     host_pull_to_local()
 
-print(f"Check your bashrc to ensure that its pointing towards {VAR_STORE.workflow_dir}")
 if confirm("Add environment vars .bashrc?"):
     with open(os.path.expanduser("~/.bashrc"), "a") as file:
         file.write("\n\n# Workflow Setup\n")
