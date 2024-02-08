@@ -20,6 +20,7 @@ VAR_STORE.pull_ignore_categories.extend(pull_ignore_categories)
 
 
 host_dir = VAR_STORE.get_host_dir()
+should_overwrite = not host_dir.exists() or [p.name for p in host_dir.iterdir()] == ["var_store.json"]
 if not host_dir.exists():
     copy_host_dir = VAR_STORE.get_hosts_dir() / copy_hostname
     host_dir = VAR_STORE.get_host_dir()

@@ -2,10 +2,15 @@
 *By and for Robert Swanson*
 
 ## First Time Setup
-1. `cd <desired root dir>`
-2. `git clone git@github.com:robert-swanson/workflow.git`
-3. `cd workflow`
-4. `python setup.py`
+1. Add host key to github
+    1. `cat ~/.ssh/id_*.pub`
+    2. Copy the output and paste it into a new SSH key on [github settings](https://github.com/settings/keys)
+2. Clone
+    1. `cd <desired root dir>`
+    2. `git clone git@github.com:robert-swanson/workflow.git`
+3. First Time Setup
+    1. `cd workflow`
+    2. `python setup.py`
 
 
 
