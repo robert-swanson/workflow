@@ -1,6 +1,17 @@
 # Personal Workflow System
 *By and for Robert Swanson*
 
+## First Time Setup
+1. `cd <desired root dir>`
+2. `git clone git@github.com:robert-swanson/workflow.git`
+3. `cd workflow`
+4. `python setup.py`
+
+
+
+
+
+
 ## Local Management
 
 ### ns {scriptname} [category default:misc]
