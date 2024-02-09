@@ -29,6 +29,7 @@ def fzf_select_one(options: list[str], prompt: Optional[str] = None) -> str:
 
     if selection not in options:
         print(f"Invalid selection: {selection}")
+        input("Press enter to try again")
         return fzf_select_one(options, prompt)
 
     print(f"Selected {selection}")
@@ -69,6 +70,7 @@ def fzf_select_multiple(options: list[str], prompt: Optional[str] = None, min_re
             is_valid = False
 
     if not is_valid:
+        input("Press enter to try again")
         return fzf_select_multiple(options, prompt, min_required, max_allowed)
 
     print(f"Selected {selections}")
