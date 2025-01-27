@@ -1,5 +1,7 @@
 #!/bin/bash
-set -e
-
-echo $* > $(~/dev/workflow/local_scripts/get-title-file)
+#set -e
+FILE=~/dev/workflow/local_scripts/get-title-file
+if [ -e $FILE ] ; then
+    echo $* > $FILE
+fi
 

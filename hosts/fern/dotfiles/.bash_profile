@@ -23,3 +23,8 @@ export PS1="\[\e[32m\]\h\[\e[m\]\[\e[32m\]:\[\e[m\]\[\e[35m\]\W\[\e[m\] "
 # Added by Toolbox App
 export PATH="$PATH:/usr/local/bin"
 
+
+# Setting PATH for Python 3.12
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
+export PATH
