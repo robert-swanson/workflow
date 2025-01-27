@@ -2,7 +2,6 @@
     "host": "mac_template",
     "workflow_dir": "/Users/robertswanson/dev/workflow",
     "home_dir": "/Users/robertswanson",
-    "pull_ignore_categories": [
-        "malware"
-    ]
+    "pull_ignore_categories": [],
+    "export_ignore_categories": []
 }

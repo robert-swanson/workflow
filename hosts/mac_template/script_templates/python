@@ -2,6 +2,7 @@
 import argparse
 import os
 import sys
+from workflow_py.utils import bash
 
 sys.path.append(os.environ.get("WORKFLOW_PATH"))
 

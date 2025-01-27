@@ -1,5 +1,0 @@
-#!/bin/bash
-set -o xtrace
-
-sudo umount /mnt/fsx_optiverus-research-persistent/
-sudo mount /mnt/d1-nfs-pcap-1/

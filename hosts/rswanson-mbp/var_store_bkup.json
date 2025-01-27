@@ -1,0 +1,7 @@
+{
+    "host": "rswanson-mbp",
+    "workflow_dir": "/Users/rswanson/dev/workflow",
+    "home_dir": "/Users/rswanson",
+    "pull_ignore_categories": [ ],
+    "export_ignore_categories": [ "spacex" ]
+}

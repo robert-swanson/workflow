@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+#set -o xtrace
+
+TAG=$1
+FEATURE_COMMIT=$2
+
+if [[ "$FEATURE_COMMIT" == "" ]]; then
+    FEATURE_COMMIT=$(git rev-parse --short HEAD)
+fi
+
+set +e
+git rev-list -n 1 "$TAG" 
+TAG_NOT_KNOWN=$?
+set -e
+
+if [[ $TAG_NOT_KNOWN != 0 ]]; then
+    echo "Unknown tag $TAG, fetching..."
+    PREV_BRANCH=$(b)
+    git fetch
+    git checkout master
+
+    TAG_COMMIT=$(git rev-list -n 1 "$TAG")
+
+    git checkout $PREV_BRANCH
+    does-commit-a-contain-b $TAG_COMMIT $FEATURE_COMMIT
+else
+    TAG_COMMIT=$(git rev-list -n 1 "$TAG")
+    does-commit-a-contain-b $TAG_COMMIT $FEATURE_COMMIT
+fi
+

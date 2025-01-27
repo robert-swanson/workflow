@@ -2,7 +2,6 @@ export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 
 #Add Workflow to path
 export PATH=/Users/robertswanson/dev/workflow/local_scripts:$PATH
-export PATH=/Users/robertswanson/dev/workflow/workflow_scripts:$PATH
 export WORKFLOW_PATH=/Users/robertswanson/dev/workflow
 export PYTHONPATH="$PYTHONPATH:$WORKFLOW_PATH"      
 

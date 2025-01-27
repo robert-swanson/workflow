@@ -24,10 +24,12 @@ workflow
 │   └── ...
 ├── scripts
 │   ├── category1 (optionally gitignored)
+│   │   ├── category1.1
+│   │   │   └── script 1.1
 │   │   ├── script1
 │   │   └── ...
-│   └── ...
-├── workflow_scripts
+│   ├── workflow_scripts 
+│   │   └── ...
 │   └── ...
 └── setup.py
 """
@@ -39,6 +41,7 @@ class VarStore:
     workflow_dir: str
     home_dir: str
     pull_ignore_categories: list[str]
+    export_ignore_categories: list[str]
 
     def write(self):
         with open(_get_var_store_path(), "w") as f:
@@ -73,7 +76,7 @@ class VarStore:
 
     # Workflow Scripts
     def get_workflow_scripts_dir(self) -> Path:
-        return make_assured_dir(f"{self.workflow_dir}/workflow_scripts")
+        return make_assured_dir(f"{self.workflow_dir}/scripts/workflow_scripts")
 
 
 def make_assured_dir(path_str: str) -> Path:
@@ -85,7 +88,7 @@ def make_assured_dir(path_str: str) -> Path:
 # Trash
 def make_trash_dir(name: Optional[str] = None) -> Path:
     trash_dir = Path(f"/tmp/workflow_trash/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}{f'_{name}' if name else ''}")
-    trash_dir.mkdir(exist_ok=False, parents=True)
+    trash_dir.mkdir(exist_ok=True, parents=True)
     return trash_dir
 
 

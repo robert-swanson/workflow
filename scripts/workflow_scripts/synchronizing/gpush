@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+auth
+
+cd "$WORKFLOW_PATH"
+pull
+git add -A
+changes=$(git status --porcelain | sed s/^...// | xargs)
+changes=${changes// /, }
+
+if [[ "$changes" == "" ]]; then
+    exit 0
+fi
+
+git status
+read -p "Do you want to apply changes to all of these scripts? [y/N] " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Committing..."
+    git commit -m "$changes"
+
+    echo "Pushing..."
+    push
+fi

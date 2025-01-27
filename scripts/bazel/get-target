@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import argparse
+import json
+import os
+import sys
+
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+
+parser = argparse.ArgumentParser(description="Read the compile_commands.json file and print the command to compile a target")
+parser.add_argument("file", nargs="?", type=str, help="the file to locate the compile command for")
+parser.add_argument("-l", "--list", action="store_true", help="List the target files")
+args = parser.parse_args()
+
+
+filepath="/home/rswanson/dev/satcode/payload/compile_commands.json"
+
+data = open(filepath, "r").read()
+targets = json.loads(data)
+
+if (args.file is not None):
+    for target in targets:
+        if target["file"] == args.file:
+            compile_cmd = target["arguments"]
+            dir = target["directory"]
+            print(f"cd {dir} && " + ' '.join(compile_cmd))
+            break
+    else:
+        print(f"Could not locate target {args.file} if this is a valid target add using 'add-target <bazel target>; bazel run //tools/refresh_compile_commands'")
+
+if (args.list):
+    print([t['file'] for t in targets])

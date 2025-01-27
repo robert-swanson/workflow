@@ -1,3 +1,0 @@
-FILEPATH=/home/CS/users/rswanson/.linux/cos436-parallelanddistributed/genome
-
-cd $FILEPATH && clear && echo "-----------" && make && ./genome $*

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+while read target; do
+    if [[ $target == \#* ]] || [[ $target == "" ]]; then
+        continue
+    fi
+    echo $target
+done <$(repo)/payload/.bazeltargets
+
+
+while read target; do
+    if [[ $target == \#* ]] || [[ $target == "" ]]; then
+        continue
+    fi
+    echo $target
+done <~/.bazeltargets

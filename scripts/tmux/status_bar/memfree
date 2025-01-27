@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+free | grep Mem | awk '{ printf("%.0f%\n", $4/$2 * 100.0) }'

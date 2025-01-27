@@ -1,5 +1,0 @@
-#!/bin/bash
-set -o xtrace
-set -e
-
-echo this is the script

@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+MSG="$@"
+
+title "c $*"
+
+if [[ $(repo) =~ "satcode" ]] || [[ $(repo) =~ "autotest" ]]; then
+    TICKET=$(ticket | tail -1)
+    MSG="$TICKET: $MSG"
+fi
+
+echo "----------> Committing to branch '$(b)' with message: $MSG"
+git commit -m "$MSG"
+

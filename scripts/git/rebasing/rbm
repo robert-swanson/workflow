@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+ch master
+pull
+ch -
+git rebase master
+
+
+read -p "Force push rebase? [y/N] " -n 1 -r
+echo 
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git push origin `b` --force-with-lease
+fi
+
+

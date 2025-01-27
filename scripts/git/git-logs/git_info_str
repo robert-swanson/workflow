@@ -1,0 +1,33 @@
+#!/bin/bash
+#set -e
+
+#GIT_PS1_SHOWDIRTYSTATE=
+#GIT_PS1_SHOWSTASHSTATE=
+#GIT_PS1_SHOWUNTRACKEDFILES=
+#GIT_PS1_SHOWUPSTREAM=
+#GIT_PS1_SHOWCONFLICTSTATE=
+#GIT_PS1_SHOWCOLORHINTS=
+
+GIT_PS1_SHOWDIRTYSTATE=True
+GIT_PS1_SHOWSTASHSTATE=
+GIT_PS1_SHOWUNTRACKEDFILES=True
+GIT_PS1_SHOWUPSTREAM=True
+GIT_PS1_SHOWCONFLICTSTATE=True
+GIT_PS1_SHOWCOLORHINTS=
+
+DIR=$1
+TRUNC_LEN=$2
+
+source ~/.git-prompt.sh
+cd $DIR
+REPO=$(repo_ps $1)
+GIT_INFO=$(__git_ps1 " (%s)")
+GIT_INFO=$(~/dev/workflow/local_scripts/trunc_string $(($TRUNC_LEN - 40)) "$GIT_INFO")
+
+MSG=$REPO$GIT_INFO
+
+if [[ $MSG == "" ]]; then
+    echo " $(basename $1)"
+else
+    echo "$MSG"
+fi

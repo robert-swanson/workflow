@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+FILES=$(fzf -m)
+if [[ $FILES != "" ]]; then
+    echo Opening $FILES
+    vim -p $FILES
+fi
+
+

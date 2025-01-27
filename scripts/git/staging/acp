@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+clear
+if [[ "$1" == "--full" ]]; then
+    title "acp (full verif)"
+elif [[ "$1" == "--after" ]]; then
+    title "acp (push then verify)"
+else
+    title "acp $*"
+fi
+
+#bazel clean
+lint
+add
+if [[ "$1" == "--full" ]]; then
+    test-pr
+    c ${@:2}
+    push
+elif [[ "$1" == "--after" ]]; then
+    c ${@:2}
+    push
+    test-pr
+else
+    c $*
+    push
+fi
+
+
+title "Add Commit Push Completed"

@@ -1,1 +1,6 @@
 inoremap ;; <Esc>
+inoremap Q @q
+
+" Macro
+noremap "" qw
+noremap '' @qw

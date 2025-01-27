@@ -1,0 +1,9 @@
+#!/bin/bash
+#set -e
+set -o xtrace
+
+commit=$1
+
+git fetch origin master --tags  &> /dev/null
+
+git tag --contains $commit

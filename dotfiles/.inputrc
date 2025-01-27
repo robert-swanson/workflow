@@ -11,3 +11,7 @@ Control-l: clear-screen
 $endif
 
 ";;": vi-movement-mode
+
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward

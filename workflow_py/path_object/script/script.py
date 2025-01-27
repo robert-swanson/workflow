@@ -5,6 +5,7 @@ from typing import Optional
 
 from workflow_py.path_object.path_object import PathObject
 from workflow_py.var_store import VAR_STORE
+from workflow_py.utils import bash, bash_txt
 
 
 class Script(PathObject):
@@ -18,8 +19,8 @@ class Script(PathObject):
         with open(self.path, 'r') as self_file, open(other.path, 'r') as other_file:
             return self_file.read() == other_file.read()
 
-    def get_category(self) -> str:
-        return self.path.parent.name
+    def get_category_path(self) -> Path:
+        return self.path.parent
 
     def describe(self) -> str:
         local_scripts = str(VAR_STORE.get_local_scripts_dir())
@@ -57,3 +58,15 @@ class Script(PathObject):
             shutil.move(self.path, trash_dir)
         except shutil.Error:
             self.path.unlink()
+
+    def _executor(self) -> str:
+        file_results: str = bash_txt("file", self.path)
+        if (file_results.__contains__("Python script")):
+            return "python3"
+        else:
+            # Assume bash by default
+            return "bash"
+
+    def run(self, args = []):
+        print(f"Running '{self.name}'")
+        bash(self._executor(), self.path, *args)

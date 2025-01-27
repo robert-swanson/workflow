@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import shutil
+import sys
+
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+
+from workflow_py.var_store import VAR_STORE
+from workflow_py.path_object.script.script import Script
+from workflow_py.path_object.script.local_script_utils import get_local_script
+from workflow_py.path_object.script.saved_script_utils import get_saved_script, validate_script_name_available
+from workflow_py.path_object.category.category_utils import get_host_categories
+from workflow_py.path_object.category.category import Category
+from workflow_py.utils import fzf_select_one, bash
+
+parser = argparse.ArgumentParser(description="Move a scrip to another category")
+parser.add_argument("script", type=str, nargs="?", help="name of script to move")
+args = parser.parse_args()
+
+if args.script:
+    saved_script, category = get_saved_script(args.script, None)
+else:
+    categories = get_host_categories()
+    scripts = [script for category in categories for script in category.get_saved_scripts()]
+    saved_script: Script = fzf_select_one(scripts, prompt="Select script to move: ")
+
+old_category = Category(saved_script.get_category_path())
+new_category = fzf_select_one(get_host_categories(), prompt=f"Choose new category for '{saved_script.name} (currently in category '{Category(saved_script.get_category_path()).name}'): ")
+bash("git", "mv", saved_script.path, new_category.path / saved_script.name)
+print(f"Moved {saved_script.name} from {old_category.name} to {new_category.name}")

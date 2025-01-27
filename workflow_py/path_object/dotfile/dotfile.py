@@ -17,8 +17,11 @@ class Dotfile(PathObject):
             return False
         if self.path.is_dir():
             return all([Dotfile(self_file) == Dotfile(other_file) for self_file, other_file in zip(self.path.iterdir(), other.path.iterdir())])
-        with open(self.path, 'r') as self_file, open(other.path, 'r') as other_file:
-            return self_file.read() == other_file.read()
+        try:
+            with open(self.path, 'r') as self_file, open(other.path, 'r') as other_file:
+                return self_file.read() == other_file.read()
+        except UnicodeDecodeError as e:
+            return True
 
     def describe(self) -> str:
         global_dotfiles_dir = str(VAR_STORE.get_global_dotfiles_dir())

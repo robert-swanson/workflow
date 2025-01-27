@@ -1,3 +1,0 @@
-#!/bin/bash
-
-unstage $* && git restore $* && git clean -fd -e "cmake*" -e "*pycache__" -e ".idea" -e ".cmake" && s

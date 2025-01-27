@@ -1,0 +1,36 @@
+alias la="source ~/.aliases"
+alias lr="source ~/.bashrc"
+alias karabiner_cli="/Library/Application\ Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli"
+
+alias dev="cd ~/dev; ls"
+alias workflow="cd ~/dev/workflow/; ls"
+alias vi="nvim"
+
+alias auto="cd ~/dev/autotest"
+alias autotest="cd ~/dev/autotest"
+alias auto2="cd ~/dev/autotest-2"
+alias autotest2="cd ~/dev/autotest-2"
+alias activate="source venv/bin/activate"
+
+alias sat1="cd ~/dev/satcode"
+alias sat2="cd ~/dev/satcode-2"
+alias sat3="cd ~/dev/satcode-3"
+alias sat4="cd ~/dev/satcode-4"
+
+alias review="cd ~/dev/satcode-reviews"
+
+alias sat="cd \$(repo) && pwd"
+alias api="cd \$(repo)/api && pwd"
+alias payload="cd \$(repo)/payload && pwd"
+alias pay="cd \$(repo)/payload && pwd"
+alias rocket="cd \$(repo)/rocket && pwd"
+alias swrelease="cd \$(repo)/swrelease && pwd"
+alias connection_manager="cd \$(repo)/connection_manager && pwd"
+alias connection_manager="cd \$(repo)/payload/spacex/sat/network/connection_manager && pwd"
+alias network="cd \$(repo)/payload/spacex/sat/network/ && pwd"
+alias nf="cd \$(repo)/payload/spacex/sat/network/network_frontend && pwd"
+alias ddcp="cd \$(repo)/payload/spacex/sat/network/distributed_dynamic_network && pwd"
+
+
+alias ut_ops="cd /home/rswanson/dev/ut_ops"
+alias linux="cd ~/dev/linux"

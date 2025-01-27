@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tmux new -s $(basename $(pwd))
+

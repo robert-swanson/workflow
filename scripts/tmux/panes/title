@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+TITLE=$*
+COLOR='\033[0;33m'
+NC='\033[0m' # No Color
+
+echo "[$(date)]"
+echo -e "------------>${COLOR} $TITLE ${NC}<-------------"
+set-pane-title $TITLE
+

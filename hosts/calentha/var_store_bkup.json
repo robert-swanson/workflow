@@ -2,8 +2,6 @@
     "host": "calentha",
     "workflow_dir": "/home/pi/workflow",
     "home_dir": "/home/pi",
-    "pull_ignore_categories": [
-        "malware",
-        "malware"
-    ]
+    "pull_ignore_categories": [],
+    "export_ignore_categories": [ ]
 }

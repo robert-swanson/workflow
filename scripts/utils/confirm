@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+read -p "$*: ? [y/N] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Exiting..."
+    exit 1
+fi
+
+

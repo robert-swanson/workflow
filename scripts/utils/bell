@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eval "$*"
+tput bel
+exit 1

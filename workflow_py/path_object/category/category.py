@@ -1,10 +1,16 @@
+import os.path
 from pathlib import Path
 
 from workflow_py.path_object.path_object import PathObject
 from workflow_py.path_object.script.script import Script
+from workflow_py.var_store import VAR_STORE
 
 
 class Category(PathObject):
+    def __init__(self, path: Path):
+        self.name = str(os.path.relpath(path, VAR_STORE.get_scripts_dir()))
+        self.path = path
+
     def get_scripts(self) -> list[Script]:
         return [Script(script) for script in self.path.iterdir() if script.is_file()]
 

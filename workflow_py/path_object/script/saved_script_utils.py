@@ -1,10 +1,12 @@
 import shutil
 from typing import Optional, List, Tuple
+from pathlib import Path
 
 from workflow_py.path_object.category.category import Category
 from workflow_py.path_object.category.category_utils import get_host_categories
 from workflow_py.path_object.script.script import Script
 from workflow_py.var_store import VAR_STORE
+from workflow_py.utils import fzf_select_one
 
 
 def get_saved_script(name: str, category_name: Optional[str] = None) -> Tuple[Script, Category]:
@@ -51,3 +53,9 @@ def validate_script_name_available(name: str):
 
 def find_categories_with_script_name(name: str) -> List[Category]:
     return [category for category in get_host_categories() if (category.path / name).is_file()]
+
+def choose_template(prompt = None) -> Path:
+    if not prompt:
+        prompt = "Choose script template"
+    templates = [f for f in (VAR_STORE.get_script_templates_dir()).iterdir()]
+    return fzf_select_one(templates, prompt=prompt)

@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+echo "----------> addc $*"
+
+git ls-files -m
+
+MSG="$*"
+if [[ "$MSG" == "" ]]; then
+    read -p "Commit message: "
+    MSG=$REPLY
+fi
+
+lint
+
+add && c "$MSG" 
+if [ "$?" != 0 ]; then
+    echo " ======================== COMMIT FALIED! ========================"
+    bell
+    exit 1
+else
+    echo "----------> Commit Complete"
+fi

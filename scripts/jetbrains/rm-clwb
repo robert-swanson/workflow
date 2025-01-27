@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+
+title rm-clwb
+
+for project in "payload" "rocket"; do
+    for filename in "java_info.bzl" "python_info.bzl"; do
+        FILE=$(repo)/$project/.clwb/aspect/$filename
+        if [ -f "$FILE" ] ; then 
+            echo "removing $FILE"
+            rm $FILE
+        fi
+    done
+done
+

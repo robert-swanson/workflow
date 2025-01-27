@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+title "pushing branch"
+auth && git push origin $(b) $*

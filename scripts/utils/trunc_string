@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+
+LIMIT=$1
+STR="${@:2}"
+
+PART_1_END=5
+PART_2_START=18
+PART_2_LEN=$((($LIMIT-$PART_1_END)/2))
+PART_3_LEN=$(($LIMIT-$PART_1_END-$PART_2_LEN))
+
+# From https://stackoverflow.com/a/77668873
+trunc1() {
+	if [ "${#1}" -le $LIMIT ]; then
+		echo "$1"
+	else
+		printf '%s…%s\n' "${1%%"${1#????}"}" "${1##"${1%????}"}"
+	fi
+}
+
+
+trunc2() {
+    local num=$1
+    local str=$2
+
+    if [ ${#str} -le $num ]; then
+        echo "$str"
+    else
+        local truncated="${str:0:$PART_1_END}…${str:$PART_2_START:$PART_2_LEN}…${str: -$(($PART_3_LEN))}"
+        echo "$truncated"
+    fi
+}
+
+trunc2 $LIMIT "$STR"

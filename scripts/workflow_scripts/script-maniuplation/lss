@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+from typing import List
+
+from workflow_py.path_object.category.category_utils import get_category_with_name, get_host_categories
+from workflow_py.path_object.script.script import Script
+from workflow_py.utils import fzf_select_one
+
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+
+from workflow_py.var_store import VAR_STORE
+
+parser = argparse.ArgumentParser(description="List categories or scripts in a category")
+parser.add_argument("-a", "--list-all", help="lists all categories, even those ignored by this host", action="store_true")
+parser.add_argument("-g", "--grep", type=str, help="a pattern to filter listed scripts by")
+args = parser.parse_args()
+
+categories = get_host_categories(get_all=args.list_all)
+scripts = [script for category in categories for script in category.get_saved_scripts() if not args.grep or args.grep in script.name]
+script: Script = fzf_select_one(scripts)
+script.run()

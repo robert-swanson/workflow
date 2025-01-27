@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+if [[ $1 != "" ]]; then 
+    TMUX_PANE=$1
+fi
+
+if [[ $TMUX_PANE == "" ]]; then
+    echo TMUX_PANE-not-set
+else
+    echo $TMUX_PANE
+fi
+
+

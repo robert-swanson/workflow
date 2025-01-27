@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+BRANCH=$1
+
+#ch $BRANCH
+#pull
+#ch -
+git fetch
+git rebase origin/$BRANCH
+
+
+read -p "Force push rebase? [y/N] " -n 1 -r
+echo 
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git push origin `b` --force-with-lease
+fi
+
+
+

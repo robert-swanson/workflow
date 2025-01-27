@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+HAS_SOUNDED=False
+
+failure_hook() {
+    if [[ $HAS_SOUNDED == "False" ]]; then
+        bell
+        HAS_SOUNDED=True
+    fi
+    exit 1
+}
+
+trap 'failure_hook' ERR
+exec "$*"

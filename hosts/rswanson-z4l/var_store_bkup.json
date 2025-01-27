@@ -1,0 +1,7 @@
+{
+    "host": "rswanson-z4l",
+    "workflow_dir": "/home/rswanson/workflow",
+    "home_dir": "/home/rswanson",
+    "pull_ignore_categories": [ "mac" ],
+    "export_ignore_categories": [ "spacex" ]
+}

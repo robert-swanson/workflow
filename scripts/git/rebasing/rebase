@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+NUM_COMMITS=$(git rev-list --count HEAD ^master)
+
+git rebase HEAD~$NUM_COMMITS -i $*
+
+read -p "Force push rebase? [y/N] " -n 1 -r
+echo 
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git push origin `b` --force-with-lease
+fi
+
+

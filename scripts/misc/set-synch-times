@@ -1,7 +1,0 @@
-#!/bin/bash
-
-FILES=$*
-
-SYNC_TIME=$(date -d "5 minutes" +%H:%M:00)
-echo $SYNC_TIME
-sed -i "s/FeatureSynchronization enabled=\"true\" time=\"..:..:..\"\/>/FeatureSynchronization enabled=\"true\" time=\"$SYNC_TIME\"\/>/g" $FILES

@@ -1,9 +1,0 @@
-echo "-------------------------------- P=$1 [$2x$3] --------------------------------"
-
-P=$1
-ROW=$2
-COL=$3
-
-cd /Users/robertswanson/dev/rswanson/cos436-parallel_and_distributed_computing/mat-add/cmake-build-debug
-
-mpirun --hostfile ../hostfile -np $P ./mat_add_dist $ROW $COL A.csv B.csv C.csv

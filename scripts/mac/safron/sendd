@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+cd ~/Downloads && ls -t | head -1 | xargs send

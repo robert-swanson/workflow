@@ -1,0 +1,37 @@
+#!/bin/bash
+
+STATUS=$?
+
+set -e
+
+
+DEFAULT_COLOR='\033[0;33m'
+ERROR_COLOR='\033[0;31m'
+
+NC='\033[0m' # No Color
+
+if [[ $1 == "--prompt" ]]; then
+    FILE=$(~/dev/workflow/local_scripts/get-title-file)
+    TITLE=$(cat $FILE)
+    if [[ $TITLE != "" ]]; then
+        if [[ $STATUS != 0 ]]; then
+            # Last command failed
+            printf "$(date): Last Command ${ERROR_COLOR}FAILED${NC} at: ${ERROR_COLOR}$TITLE${NC}\n"
+        else
+            printf "$(date): Command Finished with: ${DEFAULT_COLOR}$TITLE${NC}\n"
+        fi
+
+        bell
+    fi
+    exit 0
+elif [[ $1 != "" ]]; then 
+    TMUX_PANE=$1
+fi
+FILE=$(~/dev/workflow/local_scripts/get-title-file $TMUX_PANE)
+TITLE=$(cat $FILE)
+
+if [[ $TITLE != "" ]]; then
+    echo ": #[fg=cyan]$TITLE"
+fi
+
+

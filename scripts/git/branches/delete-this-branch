@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+BRANCH=$(b)
+
+confirm "Are you sure you want to delete branch '$BRANCH'"
+
+cm
+
+git branch -D $BRANCH
+ch $BRANCH

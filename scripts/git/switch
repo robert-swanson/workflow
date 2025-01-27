@@ -1,1 +1,0 @@
-clean; reset; git checkout $1; cd ~/malware/linux/$2/$1; loadrepo; rv

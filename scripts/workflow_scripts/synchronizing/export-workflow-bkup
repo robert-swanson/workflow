@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import base64
+import os
+import sys
+from pathlib import Path
+
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+from workflow_py.utils import bash
+from workflow_py.var_store import VAR_STORE
+
+repo_path = Path(VAR_STORE.workflow_dir)
+categories_to_ignore = VAR_STORE.export_ignore_categories
+exclude_args = [f"--exclude=scripts/{category}" for category in categories_to_ignore]
+
+os.chdir(repo_path.parent)
+tar_file = "workflow_bkup.tar.gz"
+encoded_txt = "workflow_bkup.txt"
+
+bash("tar", *exclude_args, "-cvzf", tar_file, repo_path.name)
+with open(tar_file, "rb") as f:
+    encoded = base64.b64encode(f.read()).decode(("utf-8"))
+with open(encoded_txt, "w") as f:
+    f.write(encoded)
+
+print(f"Encoded file at '{str(os.getcwd())}/{encoded_txt}'")
+

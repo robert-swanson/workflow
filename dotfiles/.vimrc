@@ -3,6 +3,11 @@ inoremap ;; <Esc>
 noremap ;; :qa<Enter>
 noremap w;; :wqa<Enter>
 
+" Macro
+noremap "" qw
+noremap '' @w
+
+
 " Line Nuumbers
  set number relativenumber
 
@@ -55,3 +60,4 @@ nnoremap ,<space> :nohlsearch<CR>
 
 " Search
 set smartcase
+

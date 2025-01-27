@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+sys.path.append(os.environ.get("WORKFLOW_PATH"))
+
+from workflow_py.var_store import make_trash_dir
+from workflow_py.path_object.script.saved_script_utils import get_saved_script
+from workflow_py.path_object.script.local_script_utils import get_local_script
+
+parser = argparse.ArgumentParser(description="Delete a script")
+parser.add_argument("name", type=str, help="name of the script to delete")
+parser.add_argument("-c", "--category", type=str, default=None, help="category for the script to delete")
+args = parser.parse_args()
+trash_dir = make_trash_dir(args.name)
+
+try:
+    get_local_script(args.name).delete(trash_dir)
+    print(f"Deleted local script {args.name} (trash at {trash_dir})")
+except FileNotFoundError as e:
+    print("No local file to delete")
+
+try:
+    script, category = get_saved_script(args.name, args.category)
+    script.delete(trash_dir)
+    print(f"Deleted saved script {args.name} from category {category.name} (trash at {trash_dir})")
+except FileNotFoundError as e:
+    print(f"No saved file to delete")
+

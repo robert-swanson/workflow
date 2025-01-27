@@ -1,7 +1,0 @@
-dotfiles=~/workflow/dotfiles
-
-cp  ~/.bashrc ~/workflow/dotfiles/calentha.bashrc
-cp -r ~/.vim $dotfiles/
-cp ~/.inputrc $dotfiles/.inputrc 
-cp ~/.vimrc $dotfiles/.vimrc 
-cp ~/.tmux.conf $dotfiles/.tmux.conf 

@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+set -o xtrace
+
+git push origin `b` --force-with-lease
+
+
+

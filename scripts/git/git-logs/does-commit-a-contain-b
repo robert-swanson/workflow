@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+A=$1
+B=$2
+
+if [[ "$(git merge-base $A $B)" == "$(git rev-parse --verify $A)" ]]; then
+    echo "No, commit B ($B) contains the changes from commit A ($A)"
+elif [[ "$(git merge-base $A $B)" == "$(git rev-parse --verify $B)" ]]; then
+    echo "Yes, commit A ($A) contains the changes from commit B ($B)"
+else
+    echo "No, neither commit is reachable from the other"
+fi
+
+
